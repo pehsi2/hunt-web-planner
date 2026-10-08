@@ -115,7 +115,7 @@
 .boss-custom .custom-pwr{background:#1b2634;color:#ffd16a;border:1px solid #bd9142;border-radius:7px;padding:6px 9px;font-weight:800;font-size:13px;white-space:nowrap}
 .boss-rec .boss-moves{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px}
 .boss-rec .boss-moves .type-move{padding:4px 6px;border-radius:5px;font-weight:700;font-size:11px;line-height:1.25}
-.boss-custom .pk-move{font-weight:700;transition:background-color .12s,border-color .12s}
+.boss-custom .pk-move{font-weight:700;transition:background-color .12s,border-color .12s; color-scheme:dark}
 .boss-custom .pk-result{display:none}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span></header>
@@ -262,10 +262,11 @@ function showError(err){console.error('Erro no planner:',err);for(const id of ['
 const BD=JSON.parse(document.getElementById('boss-database').textContent);
 const rarityValues={Common:1,Uncommon:1.03,Rare:1.06,Epic:1.10,Prismatic:1.15,Mythic:1.21,Astral:1.28,Divine:1.36};
 const moveTypeColors={Normal:'#A8A77A',Fire:'#EE8130',Water:'#6390F0',Electric:'#F7D02C',Grass:'#7AC74C',Ice:'#96D9D6',Fighting:'#C22E28',Poison:'#A33EA1',Ground:'#E2BF65',Flying:'#A98FF3',Psychic:'#F95587',Bug:'#A6B91A',Rock:'#B6A136',Ghost:'#735797',Dragon:'#6F35FC',Dark:'#705746',Steel:'#B7B7CE',Fairy:'#D685AD'};
-function moveColor(type){return moveTypeColors[type]||moveTypeColors[ptToEng[type]]||'#50627a'}
-function moveTextColor(type){return ['Electric','Ice','Ground','Steel','Normal','Rock','Bug','Grass','Fairy'].includes(type)?'#18202a':'#ffffff'}
+function normalizeMoveType(type){const key=String(type||'').trim().toLowerCase();return Object.keys(moveTypeColors).find(k=>k.toLowerCase()===key)||Object.keys(ptToEng).map(k=>ptToEng[k]).find(k=>String(k).toLowerCase()===key)||Object.entries(ptToEng).find(([pt,en])=>pt.toLowerCase()===key)?.[1]||''}
+function moveColor(type){return moveTypeColors[normalizeMoveType(type)]||'#50627a'}
+function moveTextColor(type){return ['Electric','Ice','Ground','Steel','Normal','Rock','Bug','Grass','Fairy'].includes(normalizeMoveType(type))?'#18202a':'#ffffff'}
 function shownPwr(score){return Math.round(score/10).toLocaleString('pt-BR')}
-function colorCustomMoves(card){card.querySelectorAll('.pk-move').forEach(sel=>{const move=Object.values(BD.moves).find(m=>m.name===sel.value);const type=move?.type;sel.style.backgroundColor=type?moveColor(type):'';sel.style.color=type?moveTextColor(type):'';sel.style.borderColor=type?moveColor(type):'';sel.title=type?`Tipo: ${engToPt[type]||type}`:''})}
+function colorCustomMoves(card){card.querySelectorAll('.pk-move').forEach(sel=>{const move=Object.values(BD.moves).find(m=>m.name===sel.value);const type=move?.type;sel.style.backgroundColor=type?moveColor(type):'';sel.style.color=type?moveTextColor(type):'';sel.style.borderColor=type?moveColor(type):'';sel.title=type?`Tipo: ${engToPt[normalizeMoveType(type)]||type}`:''})}
 const natureStats=['Neutra','ATK','DEF','ATK ESP','DEF ESP','VEL'];
 const statKeys=['HP','ATK','DEF','ATK ESP','DEF ESP','VEL'];
 const engToPt={Normal:'Normal',Fire:'Fogo',Water:'Água',Electric:'Elétrico',Grass:'Planta',Ice:'Gelo',Fighting:'Lutador',Poison:'Veneno',Ground:'Terra',Flying:'Voador',Psychic:'Psíquico',Bug:'Inseto',Rock:'Pedra',Ghost:'Fantasma',Dragon:'Dragão',Dark:'Sombrio',Steel:'Metal',Fairy:'Fada'};
@@ -296,7 +297,7 @@ function renderBoss(){
  byId('bossSummary').textContent=`${b.name} · Raid ${t} · Tier ${byId('bossTier').value} · Afixos: ${[1,2,3].map(i=>byId('affix'+i).value).filter(x=>x!=='Nenhum').join(', ')||'Nenhum'} · Fraquezas: ${weak}`;
  lastRecs=recs();
  byId('recommendedBoss').replaceChildren(...lastRecs.map((r,i)=>{
- const c=node('article','boss-rec');c.append(node('h3','',`${i+1}º · ${r.p.name}`),node('p','',`${r.p.types.filter(Boolean).join(' / ')} · Lv. 100 · Common`),node('p','boss-score',`PWR: ${shownPwr(r.score)}`),(()=>{const line=node('div','boss-moves');r.moves.forEach(x=>{const chip=node('span','type-move',x.move.name);chip.style.backgroundColor=moveColor(x.move.type);chip.style.color=moveTextColor(x.move.type);chip.title=`${engToPt[x.move.type]||x.move.type}`;line.append(chip)});return line})());return c;
+ const c=node('article','boss-rec');c.append(node('h3','',`${i+1}º · ${r.p.name}`),node('p','',`${r.p.types.filter(Boolean).join(' / ')} · Lv. 100 · Common`),node('p','boss-score',`PWR: ${shownPwr(r.score)}`),(()=>{const line=node('div','boss-moves');r.moves.forEach(x=>{const chip=node('span','type-move',x.move.name);chip.style.backgroundColor=moveColor(x.move.type);chip.style.color=moveTextColor(x.move.type);chip.title=`${engToPt[normalizeMoveType(x.move.type)]||x.move.type}`;line.append(chip)});return line})());return c;
  }));
  for(let i=0;i<2;i++)refreshCustom(i);
 }

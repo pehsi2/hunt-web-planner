@@ -27,7 +27,7 @@ function node(tag,className,value){const e=document.createElement(tag);if(classN
 const fmt=p=>`${Math.round(p*100)}%`;
 const label=a=>`${a.region} · ${a.zone} · Área ${a.area}`;
 function render(){if(!db)return;const types=selected(),ranked=rankAreas(types),featured=ranked.slice(0,3),others=ranked.slice(3,8);
- byId('counter').textContent=`${featured.length} de ${ranked.length} áreas`;
+
  byId('topCards').replaceChildren(...featured.map((a,i)=>{
   const card=node('article',`area-card ${i===1?'silver':i===2?'bronze':''}`);
   card.append(node('div','medal',['🥇 1º LUGAR','🥈 2º LUGAR','🥉 3º LUGAR'][i]||`#${i+1} · ÁREA`),node('h3','',label(a)));
@@ -53,5 +53,42 @@ function render(){if(!db)return;const types=selected(),ranked=rankAreas(types),f
  document.querySelector('.second').hidden=!others.length;
 }
 for(const id of ['type1','type2','type3'])byId(id).addEventListener('change',render);
+for(const id of ['catchType1','catchType2'])byId(id).addEventListener('change',renderCapture);
 for(const b of document.querySelectorAll('[data-tab]'))b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab))});
-fetch('./data.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{db=d;byId('type1').value='Fogo';byId('type2').value='Elétrico';byId('type3').value='Nenhum';render()}).catch(err=>{byId('counter').textContent='Não foi possível carregar os dados';byId('topCards').append(node('p','',`Erro ao carregar data.json: ${err.message}. Abra pelo GitHub Pages ou use um servidor local, não file://.`))});
+fetch('./data.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{db=d;byId('type1').value='Fogo';byId('type2').value='Elétrico';byId('type3').value='Nenhum';byId('catchType1').value='Lutador';byId('catchType2').value='Nenhum';render();renderCapture()}).catch(err=>{byId('topCards').append(node('p','',`Erro ao carregar data.json: ${err.message}. Abra pelo GitHub Pages ou use um servidor local, não file://.`))});
+
+// Planner de Captura v0.6: ranking inicial independente, sem alterar Fraquezas.
+function rankCapture(){
+ const types=[...new Set(['catchType1','catchType2'].map(id=>byId(id).value).filter(x=>x!=='Nenhum'))];
+ if(!types.length)return [];
+ const areas=new Map();
+ for(const r of db.rows){
+  if(!r.types?.some(t=>types.includes(t))||typeof r.catch!=='number')continue;
+  const key=JSON.stringify([r.region,r.zone,r.area,r.level]);
+  if(!areas.has(key))areas.set(key,{region:r.region,zone:r.zone,area:r.area,level:r.level,matched:new Map()});
+  areas.get(key).matched.set(r.pokemon,r);
+ }
+ return [...areas.values()].map(a=>{
+  a.species=[...a.matched.values()];
+  a.average=a.species.reduce((s,r)=>s+r.catch,0)/a.species.length;
+  return a;
+ }).sort((a,b)=>a.average-b.average||a.level-b.level||b.species.length-a.species.length||a.region.localeCompare(b.region,'pt-BR')||a.zone.localeCompare(b.zone,'pt-BR')||a.area-b.area).slice(0,9);
+}
+function renderCapture(){
+ if(!db)return;
+ const cards=rankCapture();
+ byId('captureCards').replaceChildren(...cards.map((a,i)=>{
+  const card=node('article',`area-card capture-card ${i===1?'silver':i===2?'bronze':''}`);
+  card.append(node('div','medal',`#${i+1} · CAPTURA`),node('h3','',label(a)));
+  const info=node('div','info-line');
+  info.append(node('span','stat',`Lv. ${a.level}`),node('span','stat',`Catch médio ${a.average.toFixed(1)}`),node('span','stat',`${a.species.length} espécie(s)`));
+  const speciesBox=node('div','species-list');
+  for(const r of a.species){
+   const item=node('span','species-item');
+   item.append(node('span','species-name',r.pokemon),node('span','species-types',r.types.map(t=>emojis[t]||'').join(' ')),node('span','species-catch',`— ${r.catch}`));
+   speciesBox.append(item);
+  }
+  card.append(info,speciesBox);return card;
+ }));
+ if(!cards.length)byId('captureCards').append(node('p','', 'Selecione pelo menos um tipo para encontrar áreas de captura.'));
+}

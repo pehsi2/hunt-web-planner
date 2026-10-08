@@ -16,3 +16,12 @@
 .species-name{font-weight:650}
 .species-types{font-size:14px;letter-spacing:0}
 .species-catch{color:#e1eaf4}
+
+/* v0.6: navegação lateral e cards centralizados */
+.shell{max-width:1420px;display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:24px;align-items:start}
+.top{grid-column:1/-1}.tabs{grid-column:1;grid-row:2;display:flex;flex-direction:column;position:sticky;top:20px;align-self:start;margin:26px 0;gap:10px}
+.tabs button{text-align:left}.shell main{grid-column:2;grid-row:2;min-width:0}.shell footer{grid-column:1/-1}
+.heading{padding-top:26px}.species-list{justify-content:center;text-align:center}.species-item{justify-content:center}
+.capture-cards .area-card{min-height:190px}.capture-card .species-list{margin-top:16px}
+@media(max-width:800px){.shell{display:block}.tabs{position:static;flex-direction:row;overflow:auto;margin:18px 0}.tabs button{flex:0 0 auto}.cards{grid-template-columns:1fr}.capture-filters{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.capture-filters{grid-template-columns:1fr}}

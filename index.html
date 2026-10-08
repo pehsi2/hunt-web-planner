@@ -47,6 +47,27 @@
 .best-capture-result strong{display:block;font-size:15px}.best-capture-result .best-metrics{color:#bce9c5;font-weight:700;margin-top:3px}
 .best-capture-result small{display:block;color:#bed0c5;margin-top:3px}
 @media(max-width:800px){#captura .capture-cards{grid-template-columns:repeat(3,minmax(220px,1fr))}}
+
+/* v0.9: cartões de captura simplificados */
+#captura .capture-card{position:relative;padding:11px 13px 10px;min-height:105px}
+#captura .capture-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+#captura .capture-ident{min-width:0;flex:1}
+#captura .capture-card .medal{font-size:15px;letter-spacing:.4px}
+#captura .capture-card h3{margin:5px 0 0;font-size:13.5px}
+#captura .capture-card .info-line{display:flex;flex-direction:column;align-items:flex-end;flex:0 0 auto;gap:5px}
+#captura .capture-card .stat{font-size:11px;padding:5px 7px;white-space:nowrap}
+#captura .capture-card .species-list{margin-top:9px}
+#captura .capture-card .species-item{gap:3px}
+#captura .capture-card .species-types{order:0}
+#captura .capture-card .species-name{order:1}
+#captura .capture-card .species-catch{order:2}
+#captura .best-capture{margin-top:17px}
+#captura .best-capture h2{font-size:22px;margin-bottom:9px}
+#captura .best-capture-result{padding:16px 14px;border:2px solid #7db88b;background:linear-gradient(125deg,#29493d,#243b34);box-shadow:0 0 0 2px rgba(125,184,139,.06)}
+#captura .best-capture-result strong{font-size:19px}
+#captura .best-capture-result .best-metrics{font-size:14px;margin-top:7px}
+#captura .best-capture-result small{font-size:12px;margin-top:7px}
+@media(max-width:900px){#captura .capture-head{flex-wrap:wrap}#captura .capture-card .info-line{flex-direction:row;flex-wrap:wrap;align-items:center}}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Fraquezas</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -137,16 +158,16 @@ function renderCapture(){
  const cards=Array.from({length:3},(_,i)=>columns.map((col,j)=>col[i]?{...col[i],band:j,position:i+1}:null)).flat().filter(Boolean);
  byId('captureCards').replaceChildren(...cards.map((a,i)=>{
   const card=node('article',`area-card capture-card ${a.position===2?'silver':a.position===3?'bronze':''} band-${a.band}`);
-  card.append(node('div','medal',`${['🟩 0–40','🟨 41–80','🟥 81–120'][a.band]} · ${a.position}º LUGAR`),node('h3','',label(a)));
+  card.append(node('div','capture-head',node('div','capture-ident',node('div','medal',`${a.position}º LUGAR`),node('h3','',label(a)))));
   const info=node('div','info-line');
-  info.append(node('span','stat',`Lv. ${a.level}`),node('span','stat',`Catch médio ${a.average.toFixed(1)}`),node('span','stat',`${a.species.length} espécie(s)`));
+  info.append(node('span','stat',`Lv. ${a.level}`),node('span','stat',`Catch médio ${a.average.toFixed(1)}`));
   const speciesBox=node('div','species-list');
   for(const r of a.species){
    const item=node('span','species-item');
-   item.append(node('span','species-name',r.pokemon),node('span','species-types',r.types.map(t=>emojis[t]||'').join(' ')),node('span','species-catch',`— ${r.catch}`));
+   item.append(node('span','species-types',r.types.map(t=>emojis[t]||'').join(' ')),node('span','species-name',r.pokemon),node('span','species-catch',`— ${r.catch}`));
    speciesBox.append(item);
   }
-  card.append(info,speciesBox);return card;
+  card.querySelector('.capture-head').append(info);card.append(speciesBox);return card;
  }));
  if(!cards.length)byId('captureCards').append(node('p','', 'Selecione pelo menos um tipo para encontrar áreas de captura.'));
  const target=byId('bestCaptureResult');

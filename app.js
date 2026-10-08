@@ -26,19 +26,23 @@ function rankAreas(types){
 function node(tag,className,value){const e=document.createElement(tag);if(className)e.className=className;if(value!==undefined)e.textContent=value;return e}
 const fmt=p=>`${Math.round(p*100)}%`;
 const label=a=>`${a.region} · ${a.zone} · Área ${a.area}`;
-function render(){if(!db)return;const types=selected(),top=Math.max(1,Number(byId('top').value)||3),ranked=rankAreas(types),featured=ranked.slice(0,top),others=ranked.slice(top);
+function render(){if(!db)return;const types=selected(),ranked=rankAreas(types),featured=ranked.slice(0,3),others=ranked.slice(3,8);
  byId('counter').textContent=`${featured.length} de ${ranked.length} áreas`;
  byId('topCards').replaceChildren(...featured.map((a,i)=>{
   const card=node('article',`area-card ${i===1?'silver':i===2?'bronze':''}`);
   card.append(node('div','medal',['🥇 1º LUGAR','🥈 2º LUGAR','🥉 3º LUGAR'][i]||`#${i+1} · ÁREA`),node('h3','',label(a)));
-  const stats=node('div','stats');const values=[`Lv. ${a.level}`,`Pontuação ${fmt(a.total/Math.max(1,types.length))}`,...types.map(t=>`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`),a.averageCatch===null?'Catch potential indisponível':`Catch potential médio ${a.averageCatch.toFixed(1)}`];
-  for(const val of values)stats.append(node('span','stat',val));
+  const stats=node('div','stats');const values=[`Lv. ${a.level}`,...types.map(t=>`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`),a.averageCatch===null?'Catch potential indisponível':`Catch potential médio ${a.averageCatch.toFixed(1)}`];
+  for(const val of values.slice(0,1))stats.append(node('span','stat',val));
+  const questLine=node('div','quest-line');
+  for(const val of values.slice(1,1+types.length))questLine.append(node('span','stat quest',val));
+  stats.append(questLine);
+  for(const val of values.slice(1+types.length))stats.append(node('span','stat',val));
   const species=[...new Map(a.entries.map(r=>[r.pokemon,r])).values()].map(r=>`${r.pokemon} — ${r.catch??'—'}`);
   card.append(stats,node('p','pokemon',`Pokémon: ${species.join(' · ')}`));return card;
  }));
- byId('otherCards').replaceChildren(...others.map(a=>{const row=node('div','compact');row.append(node('span','',`${label(a)} · Lv. ${a.level}`),node('strong','',fmt(a.total/Math.max(1,types.length))));return row}));
+ byId('otherCards').replaceChildren(...others.map(a=>{const row=node('div','compact');row.append(node('span','',`${label(a)} · Lv. ${a.level}`),node('span','other-quests',types.map(t=>`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`).join('  ·  ')));return row}));
  document.querySelector('.second').hidden=!others.length;
 }
-for(const id of ['type1','type2','type3','top'])byId(id).addEventListener('change',render);
+for(const id of ['type1','type2','type3'])byId(id).addEventListener('change',render);
 for(const b of document.querySelectorAll('[data-tab]'))b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab))});
 fetch('./data.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(d=>{db=d;byId('type1').value='Fogo';byId('type2').value='Elétrico';byId('type3').value='Nenhum';render()}).catch(err=>{byId('counter').textContent='Não foi possível carregar os dados';byId('topCards').append(node('p','',`Erro ao carregar data.json: ${err.message}. Abra pelo GitHub Pages ou use um servidor local, não file://.`))});

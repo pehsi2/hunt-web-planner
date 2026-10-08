@@ -31,14 +31,23 @@ function render(){if(!db)return;const types=selected(),ranked=rankAreas(types),f
  byId('topCards').replaceChildren(...featured.map((a,i)=>{
   const card=node('article',`area-card ${i===1?'silver':i===2?'bronze':''}`);
   card.append(node('div','medal',['🥇 1º LUGAR','🥈 2º LUGAR','🥉 3º LUGAR'][i]||`#${i+1} · ÁREA`),node('h3','',label(a)));
-  const stats=node('div','stats');const values=[`Lv. ${a.level}`,...types.map(t=>`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`),a.averageCatch===null?'Catch potential indisponível':`Catch potential médio ${a.averageCatch.toFixed(1)}`];
-  for(const val of values.slice(0,1))stats.append(node('span','stat',val));
+  const stats=node('div','stats');
+  const infoLine=node('div','info-line');
+  infoLine.append(node('span','stat',`Lv. ${a.level}`),node('span','stat',a.averageCatch===null?'Catch potential indisponível':`Catch potential médio ${a.averageCatch.toFixed(1)}`));
+  stats.append(infoLine);
   const questLine=node('div','quest-line');
-  for(const val of values.slice(1,1+types.length))questLine.append(node('span','stat quest',val));
+  for(const t of types)questLine.append(node('span','stat quest',`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`));
   stats.append(questLine);
-  for(const val of values.slice(1+types.length))stats.append(node('span','stat',val));
-  const species=[...new Map(a.entries.map(r=>[r.pokemon,r])).values()].map(r=>`${r.pokemon} — ${r.catch??'—'}`);
-  card.append(stats,node('p','pokemon',`Pokémon: ${species.join(' · ')}`));return card;
+  const speciesBox=node('div','species-list');
+  const unique=[...new Map(a.entries.map(r=>[r.pokemon,r])).values()];
+  for(const r of unique){
+    const item=node('span','species-item');
+    item.append(node('span','species-name',r.pokemon));
+    item.append(node('span','species-types',(r.types||[]).map(t=>emojis[t]||'').filter(Boolean).join(' ')));
+    item.append(node('span','species-catch',`— ${r.catch??'—'}`));
+    speciesBox.append(item);
+  }
+  card.append(stats,speciesBox);return card;
  }));
  byId('otherCards').replaceChildren(...others.map(a=>{const row=node('div','compact');row.append(node('span','',`${label(a)} · Lv. ${a.level}`),node('span','other-quests',types.map(t=>`${emojis[t]||''} ${t} ${fmt(a.scores[t])}`).join('  ·  ')));return row}));
  document.querySelector('.second').hidden=!others.length;

@@ -260,7 +260,27 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
 #bosses .boss-custom .species-wrap[data-type1="Fada"]{background-image:url("assets/type-fada-scene.webp")!important}
 #bosses .boss-custom .species-wrap[data-type1="Metal"]{background-image:url("assets/type-metal-scene.webp")!important}
 @media(max-width:620px){#fraquezas .weakness-level-filter{flex:1 1 100%;border-left:0;border-top:1px solid rgba(153,181,213,.2);padding:8px 2px 0}}
-</style></head>
+</style><style id="hunt-v124-compact-custom-card">
+/* Miniatura compacta: encostada ao topo, sem faixa de presets. */
+#bosses .boss-custom .preset-bar{display:none!important}
+#bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.28fr) minmax(0,.88fr) minmax(0,.88fr);align-items:start;gap:9px}
+#bosses .boss-custom .species-wrap{align-self:start;justify-content:flex-start;padding:5px 7px 7px;gap:3px;min-height:0}
+#bosses .boss-custom .species-wrap .species-type-badges{min-height:24px;gap:3px}
+#bosses .boss-custom .species-wrap .custom-sprite{width:86px;height:75px;max-height:75px;margin:0 auto}
+#bosses .boss-custom .species-wrap .custom-field{margin-top:0}
+#bosses .boss-custom .species-wrap .custom-field span{font-size:10px}
+#bosses .boss-custom .species-wrap .pk-name{height:34px;min-height:34px}
+#bosses .boss-custom .level-rarity,#bosses .boss-custom .nature-stack{justify-content:start;gap:8px;padding-top:39px}
+#bosses .boss-custom .species-type-badges .type-pill{font-size:10px;padding:2px 6px 2px 3px}
+#bosses .boss-custom .species-type-badges .type-pill img{width:17px;height:17px}
+@media(max-width:600px){
+ #bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);gap:7px}
+ #bosses .boss-custom .species-wrap{grid-row:span 2}
+ #bosses .boss-custom .level-rarity,#bosses .boss-custom .nature-stack{padding-top:0}
+ #bosses .boss-custom .species-wrap .custom-sprite{width:75px;height:68px}
+}
+</style>
+</head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Fraquezas</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
 <main><section id="fraquezas" class="panel active"><div class="heading"><h1>Planejador de Áreas e Fraquezas</h1><p>Encontre áreas favoráveis aos tipos escolhidos.</p></div><div class="filters"><label>Fraqueza 1<select id="type1"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 2<select id="type2"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 3<select id="type3"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><div class="weakness-level-filter"><div class="weakness-level-header"><label for="maxAreaLevel">Nível máximo da área</label><output id="maxAreaLevelValue" for="maxAreaLevel">120</output></div><input type="range" id="maxAreaLevel" min="1" max="120" value="120" step="1" aria-label="Nível máximo da área"><small>Prioriza áreas de nível maior quando as fraquezas empatam.</small></div></div><div class="section-heading"><h2>✦ Melhores áreas</h2></div><div id="topCards" class="cards"></div><div class="section-heading second"><h2>Outras áreas</h2></div><div id="otherCards" class="compact-list"></div><p class="disclaimer">Cálculo migrado da base exportada da planilha. Confira os resultados com a versão atual do Google Sheets antes de considerar a migração validada.</p></section>
@@ -549,6 +569,13 @@ function buildPresetBar(i){const bar=node('div','preset-bar');const select=node(
  const upload=node('input','preset-upload');upload.type='file';upload.accept='.json,application/json';upload.style.display='none';bar.append(upload);
  action('⬆ Importar JSON',()=>upload.click());upload.addEventListener('change',async()=>{const f=upload.files?.[0];if(!f)return;try{if(f.size>2000000)throw Error('Arquivo grande demais');const raw=JSON.parse(await f.text());if(raw.format!=='hunt-planner-presets'||!raw.presets||typeof raw.presets!=='object'||Array.isArray(raw.presets))throw Error('Formato incompatível');const all=getPresets();let count=0;for(const [key,v] of Object.entries(raw.presets)){if(count>=300)break;if(typeof key==='string'&&key.length<=65&&v&&BD.pokemon.some(p=>p.name===v.pokemon)){all[key]=v;count++}}if(putPresets(all)){refreshList();notice(count+' preset(s) importado(s).')}}catch(e){notice('Erro na importação: '+e.message)}finally{upload.value=''}});
  bar.append(feedback);refreshList();bar.addEventListener('focusin',()=>refreshList(select.value));return bar}
+const CUSTOM_SLOT_KEY='huntPlannerAutoSlotsV1';
+function saveCustomSlot(i){
+ try{const state=JSON.parse(localStorage.getItem(CUSTOM_SLOT_KEY)||'{}');state[i]=capturePreset(byId('custom-'+i));localStorage.setItem(CUSTOM_SLOT_KEY,JSON.stringify(state));}catch(e){/* navegador pode bloquear armazenamento */}
+}
+function restoreCustomSlots(){
+ try{const state=JSON.parse(localStorage.getItem(CUSTOM_SLOT_KEY)||'{}');for(let i=0;i<2;i++)if(state[i])applyPreset(i,state[i]);}catch(e){/* mantém valores iniciais */}
+}
 function buildCustom(i){
  const card=node('article','boss-custom');card.id='custom-'+i;
  const header=node('div','custom-header');const badges=node('div','custom-badges');badges.append(node('span','custom-pwr','PWR: —'),node('span','custom-rank','—'));header.append(badges);card.append(header,node('div','custom-comparison',''));
@@ -557,7 +584,7 @@ function buildCustom(i){
  const levelRarity=node('div','level-rarity');levelRarity.append(node('div','species-type-label','—'));levelRarity.append(inputField('Nível',100,1,120,'pk-level'),selectField('Raridade',Object.keys(rarityValues),'pk-rarity','Common'));fields.append(levelRarity);
  const natures=node('div','nature-stack');natures.append(selectField('Natureza +',natureStats,'pk-plus','Neutra'),selectField('Natureza −',natureStats,'pk-minus','Neutra'));fields.append(natures);
  card.append(fields);
- card.insertBefore(buildPresetBar(i),fields);
+ // Sem barra de presets: os dois slots são salvos automaticamente no navegador.
  const stats=node('div','custom-stats');
  for(let s=0;s<6;s++){const pair=node('div','stat-pair');pair.append(inputField(`IV ${statKeys[s]}`,15,0,31,`pk-iv pk-iv-${s}`));pair.append(inputField(`EV ${statKeys[s]}`,0,0,252,`pk-ev pk-ev-${s}`));stats.append(pair)}
  card.append(stats);
@@ -570,8 +597,8 @@ function buildCustom(i){
  itemBox.append(gemField);
  itemBox.append(node('p','item-note','Gemas são consumíveis temporários, não ocupam slot. No mesmo tipo, vale o maior bônus entre gema (+25%) e booster (+15%).'));
  card.append(moveBox,itemBox,node('p','boss-score pk-result','Selecione Pokémon e golpes.'));
- card.addEventListener('change',e=>{refreshItemSlots(card);if(e.target.classList.contains('pk-name')||e.target.classList.contains('pk-level'))populateMoves(i);refreshCustom(0);refreshCustom(1);updateCustomRanks()});
- card.addEventListener('input',()=>{refreshCustom(0);refreshCustom(1);updateCustomRanks()});
+ card.addEventListener('change',e=>{refreshItemSlots(card);if(e.target.classList.contains('pk-name')||e.target.classList.contains('pk-level'))populateMoves(i);refreshCustom(0);refreshCustom(1);updateCustomRanks();saveCustomSlot(i)});
+ card.addEventListener('input',()=>{refreshCustom(0);refreshCustom(1);updateCustomRanks();saveCustomSlot(i)});
  return card;
 }
 function populateMoves(i){
@@ -633,6 +660,7 @@ function initBoss(){
  for(const id of ['bossTier','affix1','affix2','affix3'])byId(id).addEventListener('change',renderBoss);
  for(let i=0;i<2;i++){byId('customBoss').append(buildCustom(i));populateMoves(i)}
  renderBoss();
+ restoreCustomSlots();
 }
 
 

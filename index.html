@@ -406,6 +406,35 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
 /* Três resultados por faixa no mobile, em ordem 0–40, 41–80, 81–120. */
 @media(max-width:620px){#captura .capture-cards{display:grid!important;grid-template-columns:1fr!important}#captura .capture-card{min-width:0}}
 </style>
+
+<style id="hunt-v131-compact-and-boss-stats">
+/* Personalizador mais enxuto, com sprite maior centralizado entre os indicadores. */
+#bosses .boss-custom{padding:5px 7px 8px!important}
+#bosses .boss-custom .custom-fields{gap:6px!important;align-items:start!important}
+#bosses .boss-custom .species-wrap{min-height:169px!important;padding:5px!important;gap:2px!important}
+#bosses .boss-custom .species-wrap .custom-sprite{height:108px!important;max-height:108px!important;width:112px!important;max-width:112px!important;object-fit:contain!important;align-self:center!important;margin:18px auto -3px!important;image-rendering:pixelated}
+#bosses .boss-custom .species-type-badges{top:5px!important;left:5px!important}
+#bosses .boss-custom .species-wrap .custom-header{top:5px!important;right:5px!important}
+#bosses .boss-custom .level-rarity,#bosses .boss-custom .nature-stack{justify-content:start!important;padding-top:34px!important;gap:5px!important}
+#bosses .boss-custom .custom-field{gap:3px!important}
+#bosses .boss-custom .custom-field select,#bosses .boss-custom .custom-field input{min-height:35px!important;height:35px!important}
+/* Boss: utiliza toda a largura à direita para seis atributos calculados. */
+#bosses .boss-controls{grid-template-columns:minmax(172px,205px) minmax(165px,.72fr) minmax(265px,1.45fr)!important;gap:6px 11px!important;padding:11px!important}
+#bosses .boss-sprite-frame{min-height:210px!important}
+#bosses .boss-power-inline{justify-content:flex-start!important;gap:8px!important;padding:11px!important;background:#19263899;border:1px solid #43566b;border-radius:11px;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-content:start!important}
+#bosses .boss-summary-stat{gap:2px!important}
+#bosses .boss-summary-stat strong{font-size:17px!important}
+#bosses .boss-stats-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;border-top:1px solid #506075;padding-top:9px}
+#bosses .boss-stat-item{display:flex;flex-direction:column;gap:2px;min-width:0}
+#bosses .boss-stat-item span{font-size:10px;font-weight:700;color:#93cdf2}
+#bosses .boss-stat-item strong{font-size:15px;color:#f5f7ff}
+@media(max-width:700px){
+ #bosses .boss-controls{grid-template-columns:minmax(120px,.9fr) minmax(135px,1.1fr)!important}
+ #bosses .boss-power-inline{grid-column:1/-1!important;grid-row:5!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;height:auto!important}
+ #bosses .boss-stats-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #bosses .boss-custom .level-rarity,#bosses .boss-custom .nature-stack{padding-top:20px!important}
+}
+</style>
 </head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Tasks</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -692,7 +721,12 @@ function renderBoss(){
  const bossAtk=(base,i)=>Math.floor((2*base+15)*avgLevel/100)+5;
  const bossScores=bossMoves.map(m=>{const cls=m.damageClass;const atk=cls==='physical'?bossAtk(b.stats[1]):cls==='special'?bossAtk(b.stats[3]):(bossAtk(b.stats[1])+bossAtk(b.stats[3]))/2;const stab=String(b.type).toLowerCase()===String(m.type).toLowerCase()?1.5:1;return m.power/m.cooldown*atk/100*stab;}).sort((a,b)=>b-a).slice(0,4);
  const bossAverage=bossScores.length?bossScores.reduce((a,b)=>a+b,0)/bossScores.length:0;
- const bossInfo=byId('bossPowerEstimate');if(bossInfo){bossInfo.replaceChildren();const parts=[['Nível',`${tierRange[0]}–${tierRange[1]}`],['PWR estimado',bossAverage?shownPwr(bossAverage):'—']];for(const [label,value] of parts){const field=node('div','boss-summary-stat');field.append(node('span','',label),node('strong','',value));bossInfo.append(field)}}bossInfo.title='Estimativa ofensiva do boss contra alvo neutro com DEF 100; não diretamente comparável ao PWR dos seus Pokémon.';
+ const bossInfo=byId('bossPowerEstimate');if(bossInfo){bossInfo.replaceChildren();const parts=[['Nível',`${tierRange[0]}–${tierRange[1]}`],['PWR estimado',bossAverage?shownPwr(bossAverage):'—']];for(const [label,value] of parts){const field=node('div','boss-summary-stat');field.append(node('span','',label),node('strong','',value));bossInfo.append(field)}
+ // Atributos estimados no nível médio do tier: base do boss, IV 15, EV 0, natureza neutra, sem multiplicador extra de tier.
+ const statLabels=['HP','ATK','DEF','ATK ESP','DEF ESP','VEL'];
+ const statsGrid=node('div','boss-stats-grid');
+ b.stats.forEach((base,i)=>{const levelStat=Math.floor((2*Number(base)+15)*avgLevel/100)+(i===0?Math.floor(avgLevel)+10:5);const item=node('div','boss-stat-item');item.append(node('span','',statLabels[i]),node('strong','',String(levelStat)));item.title=`Base ${base} · nível médio ${avgLevel} · IV 15 · EV 0`;statsGrid.append(item)});
+ bossInfo.append(statsGrid);}bossInfo.title='Estimativa ofensiva do boss contra alvo neutro com DEF 100; não diretamente comparável ao PWR dos seus Pokémon.';
  for(let n=1;n<=3;n++){const el=byId('affixDesc'+n);if(el){const val=byId('affix'+n).value;el.textContent=val==='Nenhum'?'':(BD.affixDescriptions[val]||'');}}
  
  byId('recommendedBoss').replaceChildren(...lastRecs.map((r,i)=>{

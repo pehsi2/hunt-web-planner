@@ -207,10 +207,63 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
 @media(max-width:390px){#bosses .boss-custom .custom-fields{grid-template-columns:1fr 1fr}#bosses .boss-custom .custom-move-row{grid-template-columns:minmax(0,1fr) 85px}#bosses .boss-custom .custom-move-row .pk-move{padding-right:78px!important}#bosses .boss-custom .custom-move-row .move-pwr-badge{max-width:72px;font-size:9px}}
 #bosses .boss-custom .species-type-label{font-size:15px;font-weight:900;letter-spacing:.02em;line-height:1.2;text-shadow:0 1px 3px #070c18,0 0 9px rgba(0,0,0,.75);min-height:19px;overflow-wrap:anywhere}
 #bosses .boss-custom .custom-header{justify-content:flex-end;min-height:32px}
+</style><style id="hunt-v122-styles">
+#fraquezas .quest-line .quest{background:transparent!important;border:0!important;box-shadow:none!important}
+#bosses .boss-custom .species-wrap{position:relative;isolation:isolate;background-image:linear-gradient(180deg,rgba(8,26,28,.12),rgba(5,15,26,.40)),url('assets/type-grass.png');background-size:cover;background-position:center}
+#bosses .boss-custom .species-wrap[data-type1="Fogo"]{background-image:linear-gradient(180deg,rgba(20,15,10,.06),rgba(8,15,26,.5)),url('assets/type-fire.png')}
+#bosses .boss-custom .species-wrap[data-type1="Água"]{background-image:linear-gradient(180deg,rgba(10,20,30,.08),rgba(8,15,26,.5)),url('assets/type-water.png')}
+#bosses .boss-custom .species-wrap[data-type1="Gelo"]{background-image:linear-gradient(180deg,rgba(10,20,30,.08),rgba(8,15,26,.5)),url('assets/type-ice.png')}
+#bosses .boss-custom .species-wrap .custom-sprite,#bosses .boss-custom .species-wrap .custom-field{position:relative;z-index:2}
+#bosses .boss-custom .species-wrap .custom-sprite{height:106px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.6))}
+#bosses .boss-custom .species-wrap .species-type-badges{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;position:relative;z-index:3;min-height:27px;order:-1}
+#bosses .boss-custom .species-type-badges .type-pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 8px 3px 4px;font-size:11px;font-weight:900;color:#fff;background:var(--pill-color,#455);border:1px solid rgba(255,255,255,.45);text-shadow:0 1px 2px #000;box-shadow:0 2px 7px #0007}
+#bosses .boss-custom .species-type-badges .type-pill img{width:20px;height:20px;object-fit:contain}
+#bosses .boss-custom .species-type-badges .type-sep{font-weight:900;color:#fff;text-shadow:0 1px 4px #000}
+#bosses .boss-custom .level-rarity .species-type-label{display:none}
+#bosses .preset-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:end;padding:8px 0 12px;border-bottom:1px solid #425268;margin-bottom:10px}
+#bosses .preset-bar label{display:flex;flex:1 1 150px;flex-direction:column;gap:3px;font-size:11px;color:#8fd1ff;font-weight:800}
+#bosses .preset-bar select,#bosses .preset-bar input{width:100%;height:34px;min-width:0}
+#bosses .preset-bar button{border:1px solid #d7aa48;border-radius:7px;background:#263344;color:#ffda7e;padding:8px 9px;cursor:pointer;font-weight:800;font-size:11px;min-height:34px}
+#bosses .preset-bar button:hover{background:#3a4c63}
+#bosses .preset-feedback{font-size:11px;color:#a8f3bd;min-height:14px;width:100%}
+@media(max-width:600px){#bosses .boss-custom .species-wrap .custom-sprite{height:91px}#bosses .boss-custom .species-type-badges .type-pill{font-size:10px;padding-right:5px}}
+</style>
+<style id="hunt-v123-tiers-backgrounds-and-slider">
+#fraquezas .filters{display:flex;flex-wrap:wrap;align-items:end;gap:12px}
+#fraquezas .filters>label{flex:1 1 165px;min-width:140px}
+#fraquezas .weakness-level-filter{flex:1.25 1 220px;min-width:200px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:5px 10px 2px;border-left:1px solid rgba(153,181,213,.23)}
+#fraquezas .weakness-level-header{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px;color:#9cdbff;font-weight:800}
+#fraquezas #maxAreaLevelValue{color:#ffd46a;font-weight:900;font-size:17px;font-variant-numeric:tabular-nums}
+#fraquezas #maxAreaLevel{width:100%;height:22px;cursor:pointer;accent-color:#ffcf60}
+#fraquezas .weakness-level-filter small{font-size:10px;color:#c4cbd7;line-height:1.3}
+#bosses .boss-custom .species-wrap{background-position:center center!important;background-size:cover!important;background-repeat:no-repeat!important}
+#bosses .boss-custom .species-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,24,.13),rgba(8,14,24,.02) 40%,rgba(8,14,24,.57));z-index:0;pointer-events:none}
+#bosses .boss-custom .species-wrap .species-type-badges{z-index:3}
+#bosses .boss-custom .species-wrap .custom-sprite{z-index:2;filter:drop-shadow(0 4px 3px #000c)}
+#bosses .boss-custom .species-wrap .custom-field{z-index:3}
+#bosses .boss-custom .species-wrap[data-type1="Normal"]{background-image:url("assets/type-normal-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Fogo"]{background-image:url("assets/type-fogo-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Água"]{background-image:url("assets/type-agua-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Planta"]{background-image:url("assets/type-planta-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Elétrico"]{background-image:url("assets/type-eletrico-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Gelo"]{background-image:url("assets/type-gelo-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Lutador"]{background-image:url("assets/type-lutador-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Veneno"]{background-image:url("assets/type-veneno-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Terra"]{background-image:url("assets/type-terra-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Voador"]{background-image:url("assets/type-voador-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Psíquico"]{background-image:url("assets/type-psiquico-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Inseto"]{background-image:url("assets/type-inseto-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Pedra"]{background-image:url("assets/type-pedra-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Fantasma"]{background-image:url("assets/type-fantasma-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Dragão"]{background-image:url("assets/type-dragao-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Sombrio"]{background-image:url("assets/type-sombrio-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Fada"]{background-image:url("assets/type-fada-scene.webp")!important}
+#bosses .boss-custom .species-wrap[data-type1="Metal"]{background-image:url("assets/type-metal-scene.webp")!important}
+@media(max-width:620px){#fraquezas .weakness-level-filter{flex:1 1 100%;border-left:0;border-top:1px solid rgba(153,181,213,.2);padding:8px 2px 0}}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Fraquezas</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
-<main><section id="fraquezas" class="panel active"><div class="heading"><h1>Planejador de Áreas e Fraquezas</h1><p>Encontre áreas favoráveis aos tipos escolhidos.</p></div><div class="filters"><label>Fraqueza 1<select id="type1"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 2<select id="type2"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 3<select id="type3"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label></div><div class="section-heading"><h2>✦ Melhores áreas</h2></div><div id="topCards" class="cards"></div><div class="section-heading second"><h2>Outras áreas</h2></div><div id="otherCards" class="compact-list"></div><p class="disclaimer">Cálculo migrado da base exportada da planilha. Confira os resultados com a versão atual do Google Sheets antes de considerar a migração validada.</p></section>
+<main><section id="fraquezas" class="panel active"><div class="heading"><h1>Planejador de Áreas e Fraquezas</h1><p>Encontre áreas favoráveis aos tipos escolhidos.</p></div><div class="filters"><label>Fraqueza 1<select id="type1"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 2<select id="type2"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Fraqueza 3<select id="type3"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><div class="weakness-level-filter"><div class="weakness-level-header"><label for="maxAreaLevel">Nível máximo da área</label><output id="maxAreaLevelValue" for="maxAreaLevel">120</output></div><input type="range" id="maxAreaLevel" min="1" max="120" value="120" step="1" aria-label="Nível máximo da área"><small>Prioriza áreas de nível maior quando as fraquezas empatam.</small></div></div><div class="section-heading"><h2>✦ Melhores áreas</h2></div><div id="topCards" class="cards"></div><div class="section-heading second"><h2>Outras áreas</h2></div><div id="otherCards" class="compact-list"></div><p class="disclaimer">Cálculo migrado da base exportada da planilha. Confira os resultados com a versão atual do Google Sheets antes de considerar a migração validada.</p></section>
 <section id="captura" class="panel"><div class="heading"><h1>Planejador de Captura</h1><p>Encontre áreas com Pokémon dos tipos escolhidos e compare seus valores de captura.</p></div><div class="filters capture-filters"><label>Tipo 1<select id="catchType1"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label><label>Tipo 2<select id="catchType2"><option value="Nenhum">Nenhum</option><option value="Normal">Normal</option><option value="Fogo">Fogo</option><option value="Água">Água</option><option value="Elétrico">Elétrico</option><option value="Planta">Planta</option><option value="Gelo">Gelo</option><option value="Lutador">Lutador</option><option value="Veneno">Veneno</option><option value="Terra">Terra</option><option value="Voador">Voador</option><option value="Psíquico">Psíquico</option><option value="Inseto">Inseto</option><option value="Pedra">Pedra</option><option value="Fantasma">Fantasma</option><option value="Dragão">Dragão</option><option value="Sombrio">Sombrio</option><option value="Metal">Metal</option><option value="Fada">Fada</option></select></label></div><div class="section-heading"><h2>🎯 Melhores áreas para captura</h2></div><div id="captureCards" class="cards capture-cards"></div><section class="best-capture" aria-live="polite"><h2>☆ Melhor área de captura por tipo ☆</h2><div id="bestCaptureResult" class="best-capture-result"></div></section><p class="disclaimer">Ranking por três faixas independentes (0–40, 41–80 e 81–120). Em cada faixa, menor média de catch potential primeiro; em caso de empate, menor nível. Confira a ordem com o Planner de Captura do Google Sheets antes de validar. Valores de captura não representam uma porcentagem de chance garantida.</p></section>
 <section id="bosses" class="panel"><div class="heading"><h1>Planejador de Bosses</h1><p>Configure a Raid, veja recomendações e compare seus Pokémon.</p></div>
 <div class="boss-controls">
@@ -232,6 +285,7 @@ function multiplier(types,attack){return types.reduce((m,t)=>m*(db.matrix[t]?.[a
 function rankAreas(types){
  const map=new Map();
  for(const r of db.rows){
+  if(Number(r.level)>Number(byId('maxAreaLevel').value))continue;
   const key=JSON.stringify([r.region,r.zone,r.area,r.level]);
   if(!map.has(key))map.set(key,{region:r.region,zone:r.zone,area:r.area,level:r.level,entries:[],scores:Object.fromEntries(types.map(t=>[t,0]))});
   const a=map.get(key);a.entries.push(r);
@@ -245,7 +299,7 @@ function rankAreas(types){
   return a;
  }).filter(a=>types.length&&a.total>0).sort((a,b)=>{
   for(const t of types){const d=b.scores[t]-a.scores[t];if(Math.abs(d)>1e-9)return d;}
-  return a.region.localeCompare(b.region,'pt-BR')||a.zone.localeCompare(b.zone,'pt-BR')||a.area-b.area||a.level-b.level;
+  return b.level-a.level||a.region.localeCompare(b.region,'pt-BR')||a.zone.localeCompare(b.zone,'pt-BR')||a.area-b.area;
  });
 }
 function node(tag,className,value){const e=document.createElement(tag);if(className)e.className=className;if(value!==undefined)e.textContent=value;return e}
@@ -281,6 +335,7 @@ function render(){if(!db)return;const types=selected(),ranked=rankAreas(types),f
  document.querySelector('.second').hidden=!others.length;
 }
 for(const id of ['type1','type2','type3'])byId(id).addEventListener('change',render);
+byId('maxAreaLevel').addEventListener('input',e=>{byId('maxAreaLevelValue').textContent=e.target.value;render()});
 for(const id of ['catchType1','catchType2'])byId(id).addEventListener('change',renderCapture);
 for(const b of document.querySelectorAll('[data-tab]'))b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab))});
 Promise.resolve(EMBEDDED_DATA).then(d=>{db=d;byId('type1').value='Fogo';byId('type2').value='Elétrico';byId('type3').value='Nenhum';byId('catchType1').value='Lutador';byId('catchType2').value='Nenhum';render();renderCapture();initBoss()}).catch(err=>{showError(err)});
@@ -351,7 +406,7 @@ function showError(err){console.error('Erro no planner:',err);for(const id of ['
 
 // Bosses: first interactive migration; intentionally labeled proxy, not official game DPS.
 const BD=JSON.parse(document.getElementById('boss-database').textContent);
-const rarityValues={Common:1,Uncommon:1.03,Rare:1.06,Epic:1.10,Prismatic:1.15,Mythic:1.21,Astral:1.28,Divine:1.36};
+const rarityValues={Common:1,Uncommon:1.03,Rare:1.06,Epic:1.10,Prismatic:1.15,Mythic:1.21,Astral:1.28,Divine:1.36,'Gênesis':1.42,Shiny:1.45,Fundador:1.50};
 const moveTypeColors={Normal:'#A8A77A',Fire:'#EE8130',Water:'#6390F0',Electric:'#F7D02C',Grass:'#7AC74C',Ice:'#96D9D6',Fighting:'#C22E28',Poison:'#A33EA1',Ground:'#E2BF65',Flying:'#A98FF3',Psychic:'#F95587',Bug:'#A6B91A',Rock:'#B6A136',Ghost:'#735797',Dragon:'#6F35FC',Dark:'#705746',Steel:'#B7B7CE',Fairy:'#D685AD'};
 function normalizeMoveType(type){
  const key=String(type||'').trim().toLowerCase();
@@ -417,7 +472,7 @@ function refreshItemSlots(card){
  const fields=[...card.querySelectorAll('.pk-item')];const picked=new Set();
  fields.forEach((sel,i)=>{const visible=i===0||fields[i-1].value!=='Nenhum';sel.closest('label').classList.toggle('item-hidden',!visible);if(!visible)sel.value='Nenhum';if(sel.value!=='Nenhum'&&picked.has(sel.value))sel.value='Nenhum';if(sel.value!=='Nenhum')picked.add(sel.value)});
  fields.forEach(sel=>{[...sel.options].forEach(opt=>{opt.disabled=opt.value!=='Nenhum'&&picked.has(opt.value)&&sel.value!==opt.value;opt.title=itemDescription(opt.value)});showItemHint(sel.closest('label'))});
- const rarity=card.querySelector('.pk-rarity').value;const slots={Common:0,Uncommon:0,Rare:1,Epic:2,Prismatic:2,Mythic:3,Astral:3,Divine:4}[rarity]??0;
+ const rarity=card.querySelector('.pk-rarity').value;const slots={Common:0,Uncommon:0,Rare:1,Epic:2,Prismatic:2,Mythic:3,Astral:3,Divine:4,'Gênesis':4,Shiny:4,Fundador:4}[rarity]??0;
  const count=fields.filter(s=>s.value!=='Nenhum').length;card.querySelector('.item-note').textContent=count>slots?`⚠ ${count} item(ns) equipado(s). Raridade ${rarity}: ${slots} slot(s) base; bônus de laço/selos não configurados.`:`${count} de 5 itens selecionados · ${slots} slot(s) base por raridade (sem bônus de laço/selos).`;
 }
 function fillSelect(sel,values,first){sel.replaceChildren(...values.map(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;return o}));if(first&&values.includes(first))sel.value=first}
@@ -471,6 +526,29 @@ function renderBoss(){
 }
 function selectField(label,values,cls='',value){const wrap=node('label','custom-field');wrap.append(node('span','',label));const sel=node('select',cls);fillSelect(sel,values,value);wrap.append(sel);return wrap}
 function inputField(label,value,min,max,cls){const wrap=node('label','custom-field');wrap.append(node('span','',label));const input=node('input',cls);input.type='number';input.min=min;input.max=max;input.value=value;wrap.append(input);return wrap}
+const PRESET_KEY='huntPlannerCustomPresetsV1';
+function getPresets(){try{const v=JSON.parse(localStorage.getItem(PRESET_KEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+function putPresets(v){try{localStorage.setItem(PRESET_KEY,JSON.stringify(v));return true}catch(e){alert('Não foi possível salvar neste navegador. Use Exportar JSON.');return false}}
+function capturePreset(card){return {version:1,pokemon:card.querySelector('.pk-name').value,level:card.querySelector('.pk-level').value,rarity:card.querySelector('.pk-rarity').value,plus:card.querySelector('.pk-plus').value,minus:card.querySelector('.pk-minus').value,iv:[...card.querySelectorAll('.pk-iv')].map(e=>e.value),ev:[...card.querySelectorAll('.pk-ev')].map(e=>e.value),moves:[...card.querySelectorAll('.pk-move')].map(e=>e.value),moveRarities:[...card.querySelectorAll('.pk-mrarity')].map(e=>e.value),items:[...card.querySelectorAll('.pk-item')].map(e=>e.value),gem:card.querySelector('.pk-gem').value}}
+function applyPreset(i,data){if(!data||!BD.pokemon.some(p=>p.name===data.pokemon))return false;const c=byId('custom-'+i);const set=(selector,v)=>{const e=c.querySelector(selector);if(!e||v===undefined)return;if(e.tagName==='SELECT'&&![...e.options].some(o=>o.value===String(v)))return;e.value=String(v)};
+ set('.pk-name',data.pokemon);set('.pk-level',data.level);set('.pk-rarity',data.rarity);set('.pk-plus',data.plus);set('.pk-minus',data.minus);
+ ['iv','ev'].forEach(k=>(data[k]||[]).slice(0,6).forEach((v,j)=>set('.pk-'+k+'-'+j,v)));
+ populateMoves(i);(data.moves||[]).slice(0,4).forEach((v,j)=>{const e=c.querySelectorAll('.pk-move')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});
+ (data.moveRarities||[]).slice(0,4).forEach((v,j)=>{const e=c.querySelectorAll('.pk-mrarity')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});
+ (data.items||[]).slice(0,5).forEach((v,j)=>{const e=c.querySelectorAll('.pk-item')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});set('.pk-gem',data.gem);
+ refreshCustom(0);refreshCustom(1);updateCustomRanks();return true}
+function buildPresetBar(i){const bar=node('div','preset-bar');const select=node('select','preset-list');const feedback=node('div','preset-feedback','');const name=node('input','preset-name');name.placeholder='Nome do preset (ex.: Breloom Raid)';name.maxLength=65;
+ const label=node('label','','Meus presets');label.append(select);bar.append(label,name);
+ function notice(t){feedback.textContent=t}
+ function refreshList(selected){const entries=Object.keys(getPresets()).sort((a,b)=>a.localeCompare(b));select.replaceChildren(new Option('Selecione um preset',''),...entries.map(n=>new Option(n,n)));if(selected&&entries.includes(selected))select.value=selected}
+ function action(txt,fn){const b=node('button','',txt);b.type='button';b.addEventListener('click',fn);bar.append(b)}
+ action('💾 Salvar',()=>{let n=name.value.trim()||select.value;if(!n){n=prompt('Nome do preset:')?.trim()||''}if(!n)return;const all=getPresets();if(all[n]&&!confirm('Substituir o preset "'+n+'"?'))return;all[n]=capturePreset(byId('custom-'+i));if(putPresets(all)){refreshList(n);name.value=n;notice('Preset salvo neste navegador.')}});
+ action('📂 Carregar',()=>{const n=select.value;if(!n)return notice('Escolha um preset.');if(applyPreset(i,getPresets()[n])){name.value=n;notice('Preset carregado!')}else notice('Preset inválido.')});
+ action('🗑 Excluir',()=>{const n=select.value;if(!n)return;if(!confirm('Excluir o preset "'+n+'"?'))return;const all=getPresets();delete all[n];putPresets(all);refreshList();name.value='';notice('Preset excluído.')});
+ action('⬇ Exportar JSON',()=>{const data=JSON.stringify({format:'hunt-planner-presets',version:1,presets:getPresets()},null,2);const a=document.createElement('a');const url=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.href=url;a.download='hunt-planner-presets.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notice('Backup exportado.')});
+ const upload=node('input','preset-upload');upload.type='file';upload.accept='.json,application/json';upload.style.display='none';bar.append(upload);
+ action('⬆ Importar JSON',()=>upload.click());upload.addEventListener('change',async()=>{const f=upload.files?.[0];if(!f)return;try{if(f.size>2000000)throw Error('Arquivo grande demais');const raw=JSON.parse(await f.text());if(raw.format!=='hunt-planner-presets'||!raw.presets||typeof raw.presets!=='object'||Array.isArray(raw.presets))throw Error('Formato incompatível');const all=getPresets();let count=0;for(const [key,v] of Object.entries(raw.presets)){if(count>=300)break;if(typeof key==='string'&&key.length<=65&&v&&BD.pokemon.some(p=>p.name===v.pokemon)){all[key]=v;count++}}if(putPresets(all)){refreshList();notice(count+' preset(s) importado(s).')}}catch(e){notice('Erro na importação: '+e.message)}finally{upload.value=''}});
+ bar.append(feedback);refreshList();bar.addEventListener('focusin',()=>refreshList(select.value));return bar}
 function buildCustom(i){
  const card=node('article','boss-custom');card.id='custom-'+i;
  const header=node('div','custom-header');const badges=node('div','custom-badges');badges.append(node('span','custom-pwr','PWR: —'),node('span','custom-rank','—'));header.append(badges);card.append(header,node('div','custom-comparison',''));
@@ -479,11 +557,12 @@ function buildCustom(i){
  const levelRarity=node('div','level-rarity');levelRarity.append(node('div','species-type-label','—'));levelRarity.append(inputField('Nível',100,1,120,'pk-level'),selectField('Raridade',Object.keys(rarityValues),'pk-rarity','Common'));fields.append(levelRarity);
  const natures=node('div','nature-stack');natures.append(selectField('Natureza +',natureStats,'pk-plus','Neutra'),selectField('Natureza −',natureStats,'pk-minus','Neutra'));fields.append(natures);
  card.append(fields);
+ card.insertBefore(buildPresetBar(i),fields);
  const stats=node('div','custom-stats');
  for(let s=0;s<6;s++){const pair=node('div','stat-pair');pair.append(inputField(`IV ${statKeys[s]}`,15,0,31,`pk-iv pk-iv-${s}`));pair.append(inputField(`EV ${statKeys[s]}`,0,0,252,`pk-ev pk-ev-${s}`));stats.append(pair)}
  card.append(stats);
  const moveBox=node('div','custom-moves');
- for(let j=0;j<4;j++){const row=node('div','custom-move-row');const moveField=selectField(`Golpe ${j+1}`,['Nenhum'],'pk-move');const power=node('span','move-pwr-badge','—');moveField.append(power);row.append(moveField,selectField('Raridade',Object.keys(rarityValues),'pk-mrarity','Common'));moveBox.append(row)}
+ for(let j=0;j<4;j++){const row=node('div','custom-move-row');const moveField=selectField(`Golpe ${j+1}`,['Nenhum'],'pk-move');const power=node('span','move-pwr-badge','—');moveField.append(power);row.append(moveField,selectField('Raridade',Object.keys(rarityValues).filter(r=>!['Gênesis','Shiny','Fundador'].includes(r)),'pk-mrarity','Common'));moveBox.append(row)}
  const itemBox=node('div','custom-items');itemBox.append(node('div','item-heading','🎒 Itens equipados (até 5)'));
  for(let k=0;k<5;k++){const field=selectField('Item '+(k+1),heldItems,'pk-item','Nenhum');field.classList.add('item-hint-wrap');const tip=node('span','item-tooltip','Passe o mouse para ver o efeito do item selecionado.');tip.setAttribute('role','tooltip');field.append(tip);if(k)field.classList.add('item-hidden');itemBox.append(field)}
  itemBox.append(node('p','item-note','0 de 5 itens selecionados'));
@@ -506,6 +585,14 @@ function refreshCustom(i){
  const p=BD.pokemon.find(p=>p.name===c.querySelector('.pk-name').value);if(!p)return;
  const typeLabel=c.querySelector('.species-type-label');
  if(typeLabel){const types=(p.types||[]).filter(Boolean);const key=String(types[0]||'Normal').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();const colors={fogo:'#ff9354',agua:'#65bdff',planta:'#8fe778',eletrico:'#ffe36a',dragao:'#b5a2ff',fantasma:'#c8a1ff',sombrio:'#c0b6d9',fada:'#ff9be5',gelo:'#8deaff',terra:'#dfb079',pedra:'#dbc59b',lutador:'#ff8b7c',voador:'#a6c8ff',veneno:'#dba4ff',metal:'#b9d1ec',inseto:'#c8df77',psiquico:'#ffa3c8',normal:'#e1e7f0'};typeLabel.textContent=types.join(' / ');typeLabel.style.color=colors[key]||'#e1e7f0';}
+ const speciesWrap=c.querySelector('.species-wrap');
+ if(speciesWrap){
+  const types=(p.types||[]).filter(Boolean);speciesWrap.dataset.type1=types[0]||'Normal';
+  let bar=speciesWrap.querySelector('.species-type-badges');if(!bar){bar=node('div','species-type-badges');speciesWrap.prepend(bar)}
+  const iconIdx={'Normal':0,'Lutador':1,'Voador':2,'Veneno':3,'Terra':4,'Pedra':5,'Inseto':6,'Fantasma':7,'Metal':8,'Fogo':9,'Água':10,'Planta':11,'Elétrico':12,'Psíquico':13,'Gelo':14,'Dragão':15,'Sombrio':16,'Fada':17};
+  const col={'Normal':'#64748b','Lutador':'#a84034','Voador':'#4777a9','Veneno':'#7b379e','Terra':'#a36d35','Pedra':'#9a812d','Inseto':'#4d8d21','Fantasma':'#53369c','Metal':'#337f91','Fogo':'#b94b13','Água':'#1465b9','Planta':'#23783b','Elétrico':'#a98800','Psíquico':'#bd426e','Gelo':'#1a9b9d','Dragão':'#344eb0','Sombrio':'#4b4267','Fada':'#b83f9d'};
+  bar.replaceChildren();types.forEach((t,k)=>{if(k)bar.append(node('span','type-sep','|'));const pill=node('span','type-pill');pill.style.setProperty('--pill-color',col[t]||'#465');const img=node('img');img.src='assets/'+iconIdx[t]+'.png';img.alt='';pill.append(img,document.createTextNode(t));bar.append(pill)})
+ }
  const sprite=c.querySelector('.custom-sprite');const banner=c.querySelector('.species-wrap');if(banner){const t=String((p.types||[])[0]||'normal').toLowerCase();const colors={fogo:'#9a3f22',agua:'#165d99',planta:'#397a35',eletrico:'#9b7922',dragao:'#44409b',fantasma:'#5c4184',sombrio:'#383348',fada:'#9b4b93',gelo:'#327f91',terra:'#795332',pedra:'#665b43',lutador:'#833d35',voador:'#486b9c',veneno:'#72428e',metal:'#54667c',inseto:'#64772e',psiquico:'#963d64',normal:'#4a5362'};banner.style.setProperty('--species-accent',colors[t]||'#4a5362');}if(sprite){const spriteName=p.name.toLowerCase().replace(/^mega /,'').replace(/[^a-z0-9 -]/g,'').replace(/ /g,'-');if(sprite.dataset.species!==spriteName){sprite.dataset.species=spriteName;sprite.src='https://play.pokemonshowdown.com/sprites/gen5/'+spriteName+'.png';sprite.onerror=()=>{sprite.style.visibility='hidden'};sprite.onload=()=>{sprite.style.visibility='visible'};}}
  const level=Math.max(1,Math.min(120,Number(c.querySelector('.pk-level').value)||100));
  const rarity=c.querySelector('.pk-rarity').value,iv=[],ev=[];

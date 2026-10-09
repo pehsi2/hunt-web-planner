@@ -100,8 +100,8 @@
 .boss-custom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .boss-custom{border-top-color:#85c9a1}
 .custom-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
-.custom-stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin:10px 0}
-.custom-stats .custom-field{font-size:10px}
+.custom-stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:12px 0}
+.custom-stats .custom-field{font-size:10px}.stat-pair{display:flex;flex-direction:column;gap:7px;min-width:0}.stat-pair .custom-field{min-width:0}.stat-pair .custom-field input{padding:8px 6px}
 .custom-moves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .boss-score{font-weight:800;color:var(--gold)}
 @media(max-width:850px){.boss-recs{grid-template-columns:repeat(2,minmax(0,1fr))}.boss-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.custom-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -300,13 +300,13 @@ const ptToEng=Object.fromEntries(Object.entries(engToPt).map(([k,v])=>[v,k]));
 const heldItems=['Nenhum','Choice Band','Choice Scarf','Assault Vest','Eviolite','Rocky Helmet','Shell Bell','Leftovers',...Object.values(engToPt).map(t=>'Booster de '+t)];
 const gemOptions=['Nenhuma',...Object.values(engToPt).map(t=>'Gema de '+t)];
 const itemInfo={
- 'Choice Band':'Aumenta em 25% o dano enquanto equipado. Não aumenta EXP.',
- 'Choice Scarf':'Golpes recarregam 25% mais rápido. Aumenta o dano por minuto, sem bônus de EXP.',
+ 'Choice Band':'Aumenta o dano causado em 25%.',
+ 'Choice Scarf':'Reduz o tempo de recarga dos golpes em 25%.',
  'Assault Vest':'Aumenta Defesa e Defesa Especial em 40%, mas reduz em 15% o dano causado. O efeito defensivo não acumula com Eviolite.',
  'Eviolite':'Aumenta Defesa e Defesa Especial em 25%. Não funciona junto com Assault Vest.',
- 'Rocky Helmet':'Devolve 20% do dano recebido ao atacante. Só ativa quando o Pokémon é atingido.',
- 'Shell Bell':'Cura 13% do dano causado. Não acelera a recarga dos golpes.',
- 'Leftovers':'Regenera 0,4% do PS por segundo. Não aumenta o dano dos golpes.'
+ 'Rocky Helmet':'Devolve 20% do dano recebido ao atacante.',
+ 'Shell Bell':'Recupera PS equivalentes a 13% do dano causado.',
+ 'Leftovers':'Regenera 0,4% do PS por segundo.'
 };
 function itemDescription(item){if(itemInfo[item])return itemInfo[item];if(item.startsWith('Booster de '))return 'Aumenta em 15% o dano dos golpes do tipo '+item.slice(11)+'.';return 'Sem item equipado.'}
 function showItemHint(field){const sel=field.querySelector('select');if(!sel)return;const hint=field.querySelector('.item-tooltip');if(hint)hint.textContent=itemDescription(sel.value);sel.title=itemDescription(sel.value)}
@@ -356,7 +356,7 @@ function renderBoss(){
  byId('recommendedBoss').replaceChildren(...lastRecs.map((r,i)=>{
  const c=node('article','boss-rec');c.append(node('h3','',`${i+1}º · ${r.p.name}`),node('p','',`${r.p.types.filter(Boolean).join(' / ')} · Lv. 100 · Common`),node('p','boss-score',`PWR: ${shownPwr(r.score)}`),(()=>{const line=node('div','boss-moves');r.moves.forEach(x=>{const chip=node('span','type-move',moveDisplay(x.move));chip.style.backgroundColor=moveColor(x.move.type);chip.style.color=moveTextColor(x.move.type);chip.title=`${engToPt[normalizeMoveType(x.move.type)]||x.move.type}`;line.append(chip)});return line})());return c;
  }));
- for(let i=0;i<2;i++)refreshCustom(i);
+ for(let i=0;i<2;i++)refreshCustom(i);updateCustomRanks();
 }
 function selectField(label,values,cls='',value){const wrap=node('label','custom-field');wrap.append(node('span','',label));const sel=node('select',cls);fillSelect(sel,values,value);wrap.append(sel);return wrap}
 function inputField(label,value,min,max,cls){const wrap=node('label','custom-field');wrap.append(node('span','',label));const input=node('input',cls);input.type='number';input.min=min;input.max=max;input.value=value;wrap.append(input);return wrap}
@@ -371,7 +371,7 @@ function buildCustom(i){
  fields.append(selectField('Natureza −',natureStats,'pk-minus','Neutra'));
  card.append(fields);
  const stats=node('div','custom-stats');
- for(let s=0;s<6;s++){stats.append(inputField(`IV ${statKeys[s]}`,15,0,31,`pk-iv pk-iv-${s}`));stats.append(inputField(`EV ${statKeys[s]}`,0,0,252,`pk-ev pk-ev-${s}`))}
+ for(let s=0;s<6;s++){const pair=node('div','stat-pair');pair.append(inputField(`IV ${statKeys[s]}`,15,0,31,`pk-iv pk-iv-${s}`));pair.append(inputField(`EV ${statKeys[s]}`,0,0,252,`pk-ev pk-ev-${s}`));stats.append(pair)}
  card.append(stats);
  const moveBox=node('div','custom-moves');
  for(let j=0;j<4;j++){moveBox.append(selectField(`Golpe ${j+1}`,['Nenhum'],'pk-move'));moveBox.append(selectField('Raridade golpe',Object.keys(rarityValues),'pk-mrarity','Common'))}
@@ -382,8 +382,8 @@ function buildCustom(i){
  itemBox.append(gemField);
  itemBox.append(node('p','item-note','Gemas são consumíveis temporários, não ocupam slot. No mesmo tipo, vale o maior bônus entre gema (+25%) e booster (+15%).'));
  card.append(moveBox,itemBox,node('p','boss-score pk-result','Selecione Pokémon e golpes.'));
- card.addEventListener('change',e=>{refreshItemSlots(card);if(e.target.classList.contains('pk-name')||e.target.classList.contains('pk-level'))populateMoves(i);refreshCustom(0);refreshCustom(1)});
- card.addEventListener('input',()=>{refreshCustom(0);refreshCustom(1)});
+ card.addEventListener('change',e=>{refreshItemSlots(card);if(e.target.classList.contains('pk-name')||e.target.classList.contains('pk-level'))populateMoves(i);refreshCustom(0);refreshCustom(1);updateCustomRanks()});
+ card.addEventListener('input',()=>{refreshCustom(0);refreshCustom(1);updateCustomRanks()});
  return card;
 }
 function populateMoves(i){
@@ -402,11 +402,22 @@ function refreshCustom(i){
  const items=[...c.querySelectorAll('.pk-item')].map(s=>s.value).filter(x=>x!=='Nenhum');
  const score=moves.reduce((sum,s,j)=>{const m=Object.values(BD.moves).find(m=>m.name===s.value);return sum+(m?scoreMove(p,m,level,rarity,iv,ev,c.querySelector('.pk-plus').value,c.querySelector('.pk-minus').value,mr[j].value)*itemMultiplier(m,items,c.querySelector('.pk-gem').value):0)},0);
  const valid=moves.some(x=>x.value!=='Nenhum');
- const rank=1+lastRecs.filter(x=>x.score>score).length + ([0,1].filter(j=>j!==i).some(j=>{const other=byId('custom-'+j);return other&&Number(other.dataset.pwr)>score})?1:0);
+ // Rank calculated together after both custom scores have been refreshed.
  c.dataset.pwr=valid?String(score):'';
  c.querySelector('.custom-pwr').textContent=valid?`PWR: ${shownPwr(score)}`:'PWR: —';
  colorCustomMoves(c);refreshItemSlots(c);
- c.querySelector('.custom-rank').textContent=valid?`#${rank} de 6`:'Sem posição';
+ c.querySelector('.custom-rank').textContent=valid?'Calculando…':'Sem posição';
+}
+function updateCustomRanks(){
+ const custom=[0,1].map(i=>byId('custom-'+i));
+ custom.forEach((card,i)=>{
+  if(!card)return;
+  const score=Number(card.dataset.pwr);
+  if(!card.dataset.pwr){card.querySelector('.custom-rank').textContent='Sem posição';return;}
+  const aboveRecs=lastRecs.filter(x=>x.score>score).length;
+  const aboveOther=custom.some((other,j)=>j!==i&&other&&other.dataset.pwr!==''&&Number(other.dataset.pwr)>score);
+  card.querySelector('.custom-rank').textContent=`#${1+aboveRecs+(aboveOther?1:0)} de 6`;
+ });
 }
 function initBoss(){
  fillSelect(byId('bossName'),BD.bosses.map(b=>b.name),'Kyurem');

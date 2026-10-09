@@ -280,6 +280,43 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
  #bosses .boss-custom .species-wrap .custom-sprite{width:75px;height:68px}
 }
 </style>
+<style>
+/* v1.2.5: compact capture controls without enclosing background */
+#captura .capture-filters{background:transparent!important;border:0!important;box-shadow:none!important;padding:6px 0 12px!important;margin:0 auto!important;max-width:100%!important}
+#captura .capture-filters label{flex:0 1 255px!important}
+@media(max-width:560px){#captura .capture-filters label{flex:1 1 135px!important;min-width:0!important}}
+/* Three-zone green/yellow/red level bar; browser thumb follows the value */
+#fraquezas #maxAreaLevel{appearance:none!important;-webkit-appearance:none!important;display:block!important;width:100%!important;height:12px!important;border-radius:999px!important;border:1px solid rgba(255,255,255,.28)!important;outline:none!important;background:linear-gradient(to right,#38ca72 0%,#38ca72 33.333%,#f4ce47 33.333%,#f4ce47 66.666%,#ed6261 66.666%,#ed6261 100%)!important;cursor:pointer!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+#fraquezas #maxAreaLevel::-webkit-slider-thumb{-webkit-appearance:none!important;appearance:none!important;width:18px!important;height:18px!important;border-radius:50%!important;background:#f8f9fd!important;border:3px solid #24364d!important;box-shadow:0 1px 5px rgba(0,0,0,.45)!important}
+#fraquezas #maxAreaLevel::-moz-range-thumb{width:13px!important;height:13px!important;border-radius:50%!important;background:#f8f9fd!important;border:3px solid #24364d!important;box-shadow:0 1px 5px rgba(0,0,0,.45)!important}
+/* The four discarded pattern files must not be referenced */
+#bosses .boss-custom .species-wrap[data-type1="Água"]{background-image:linear-gradient(140deg,#064f77,#0a1e40)!important}
+#bosses .boss-custom .species-wrap[data-type1="Fogo"]{background-image:linear-gradient(140deg,#72311e,#281923)!important}
+#bosses .boss-custom .species-wrap[data-type1="Planta"]{background-image:linear-gradient(140deg,#145a36,#0b2b27)!important}
+#bosses .boss-custom .species-wrap[data-type1="Gelo"]{background-image:linear-gradient(140deg,#2b788f,#142c49)!important}
+</style>
+
+<style id="hunt-v126-boss-scene-hd">
+/* Cena do tipo Raid no retrato do boss; o sprite fica acima da paisagem. */
+#bosses .boss-sprite-frame{position:relative;background-size:cover;background-position:center;background-repeat:no-repeat;isolation:isolate}
+#bosses .boss-sprite-frame::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,15,26,.07),rgba(9,15,26,.38));z-index:0;pointer-events:none}
+#bosses .boss-sprite-frame img,#bosses .boss-sprite-frame span{position:relative;z-index:1;filter:drop-shadow(0 3px 3px #000c)}
+#bosses .boss-custom .species-wrap{background-size:cover!important;background-position:center!important}
+#bosses .boss-sprite-frame[data-raid-type="Normal"]{background-image:url("assets/type-normal-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Elétrico"]{background-image:url("assets/type-eletrico-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Lutador"]{background-image:url("assets/type-lutador-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Veneno"]{background-image:url("assets/type-veneno-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Terra"]{background-image:url("assets/type-terra-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Voador"]{background-image:url("assets/type-voador-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Psíquico"]{background-image:url("assets/type-psiquico-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Inseto"]{background-image:url("assets/type-inseto-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Pedra"]{background-image:url("assets/type-pedra-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Fantasma"]{background-image:url("assets/type-fantasma-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Dragão"]{background-image:url("assets/type-dragao-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Sombrio"]{background-image:url("assets/type-sombrio-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Fada"]{background-image:url("assets/type-fada-scene.webp")}
+#bosses .boss-sprite-frame[data-raid-type="Metal"]{background-image:url("assets/type-metal-scene.webp")}
+</style>
 </head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Fraquezas</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -525,6 +562,7 @@ function renderBoss(){
  const t=raidType();
  updateBossSprite();
  byId('bossTypeFixed').textContent=t;
+ const bossFrame=byId('bossSprite')?.closest('.boss-sprite-frame');if(bossFrame)bossFrame.dataset.raidType=t;
  lastRecs=recs();
  const baseline=lastRecs.length?lastRecs.reduce((sum,x)=>sum+x.score,0)/lastRecs.length:0;
  const baselineLabel=currentLang==='en'?'Average PWR of 4 recommended Pokémon':currentLang==='es'?'PWR promedio de los 4 Pokémon recomendados':'PWR médio dos 4 Pokémon recomendados';

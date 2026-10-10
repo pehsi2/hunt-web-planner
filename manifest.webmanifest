@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "HUNT PLANNER",
+  "short_name": "Hunt Planner",
+  "description": "Planejador de Tasks, Captura e Bosses Pokémon",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1b2536",
+  "theme_color": "#1b2536",
+  "icons": [
+    {
+      "src": "assets/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

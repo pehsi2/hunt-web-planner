@@ -745,6 +745,66 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
  #bosses .boss-custom .species-wrap .custom-sprite{height:115px!important;max-height:115px!important;max-width:95%!important}
 }
 #bosses .boss-custom .level-rarity>.nature-stack{position:static!important;display:flex!important;flex-direction:column!important;gap:7px!important;width:100%!important;margin:0!important;padding:0!important;align-self:stretch!important}
+</style><style id="hunt-v145-mobile-only-alignment">
+@media(max-width:760px){
+
+/* Equal-height illustrated card and stacked controls, with breathing room before moves. */
+#bosses .boss-custom .custom-fields{
+  grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important;
+  grid-template-rows:238px!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  margin-bottom:15px!important;
+}
+#bosses .boss-custom .species-wrap{
+  position:relative!important;height:238px!important;min-height:238px!important;
+  max-height:238px!important;box-sizing:border-box!important;
+  padding:8px!important;overflow:hidden!important;
+  justify-content:flex-end!important;
+}
+#bosses .boss-custom .level-rarity{
+  height:238px!important;min-height:0!important;max-height:238px!important;
+  box-sizing:border-box!important;align-self:stretch!important;
+  display:flex!important;flex-direction:column!important;
+  justify-content:space-between!important;gap:6px!important;
+  padding:3px 0!important;margin:0!important;
+}
+#bosses .boss-custom .level-rarity>.nature-stack{
+  display:flex!important;flex-direction:column!important;
+  justify-content:space-between!important;gap:6px!important;
+  flex:1 1 auto!important;min-height:0!important;
+}
+#bosses .boss-custom .level-rarity>.custom-field,
+#bosses .boss-custom .level-rarity>.nature-stack>.custom-field{
+  flex:0 1 auto!important;margin:0!important;min-height:0!important;
+}
+#bosses .boss-custom .species-wrap .custom-sprite{
+  position:absolute!important;left:50%!important;top:43%!important;
+  transform:translate(-50%,-50%)!important;
+  margin:0!important;width:140px!important;height:138px!important;
+  max-width:78%!important;max-height:60%!important;
+  object-fit:contain!important;object-position:center!important;
+  z-index:2!important;pointer-events:none!important;
+}
+#bosses .boss-custom .species-select-row{
+  position:relative!important;z-index:7!important;flex-shrink:0!important;
+  width:100%!important;min-width:0!important;
+}
+#bosses .boss-custom .custom-stats{margin-top:0!important}
+
+
+ #bosses .boss-custom .custom-fields{
+   grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr)!important;
+   grid-template-rows:238px!important;gap:7px!important;
+   margin-bottom:14px!important;
+ }
+ #bosses .boss-custom .species-wrap{height:238px!important;min-height:238px!important;max-height:238px!important}
+ #bosses .boss-custom .level-rarity{height:238px!important;max-height:238px!important;justify-content:space-between!important;padding:2px 0!important}
+ #bosses .boss-custom .level-rarity>.nature-stack{gap:6px!important;justify-content:space-between!important}
+ #bosses .boss-custom .species-wrap .custom-sprite{top:44%!important;width:145px!important;height:140px!important;max-height:60%!important}
+ #bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr)!important}
+
+}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Tasks</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>

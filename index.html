@@ -630,6 +630,56 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
  #bosses .boss-custom .species-wrap .custom-sprite{height:95px!important;max-height:95px!important;width:100px!important;margin:16px auto 0!important}
 }
 @media(max-width:380px){#bosses .boss-custom .custom-move-row{grid-template-columns:minmax(0,1fr) 91px!important}#bosses .boss-custom .custom-move-row .pk-move{padding-right:72px!important}}
+</style><style id="hunt-v141-responsive-fixes">
+/* Tasks: two independent handles on the same green/yellow/red track. */
+#fraquezas .dual-range{position:relative!important;display:block!important;height:24px!important;padding:0!important;margin:5px 0!important;isolation:isolate}
+#fraquezas .dual-range::before{content:"";position:absolute;left:0;right:0;top:7px;height:11px;border:1px solid rgba(255,255,255,.35);border-radius:20px;background:linear-gradient(to right,#38ca72 0 33.333%,#f4ce47 33.333% 66.666%,#ed6261 66.666% 100%);box-shadow:inset 0 1px 3px #0005;pointer-events:none}
+#fraquezas .dual-range input[type=range]{position:absolute!important;top:0!important;left:0!important;width:100%!important;height:24px!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;appearance:none!important;-webkit-appearance:none!important;pointer-events:none!important}
+#fraquezas .dual-range input[type=range]::-webkit-slider-runnable-track{height:11px!important;background:transparent!important;border:0!important}
+#fraquezas .dual-range input[type=range]::-moz-range-track{height:11px!important;background:transparent!important;border:0!important}
+#fraquezas .dual-range input[type=range]::-webkit-slider-thumb{appearance:none!important;-webkit-appearance:none!important;width:20px!important;height:20px!important;border:3px solid #26364d!important;border-radius:50%!important;background:#fff!important;box-shadow:0 1px 5px #0008!important;pointer-events:auto!important;cursor:grab!important;margin-top:-5px!important}
+#fraquezas .dual-range input[type=range]::-moz-range-thumb{width:14px!important;height:14px!important;border:3px solid #26364d!important;border-radius:50%!important;background:#fff!important;box-shadow:0 1px 5px #0008!important;pointer-events:auto!important;cursor:grab!important}
+#fraquezas #minAreaLevel{z-index:3!important}#fraquezas #maxAreaLevel{z-index:2!important}
+/* Custom species: level and Pokemon selectors share the illustrated card footer. */
+#bosses .boss-custom .species-select-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(72px,.55fr)!important;gap:6px!important;width:100%!important;align-items:end!important;order:2!important;position:relative!important;z-index:5!important}
+#bosses .boss-custom .species-select-row>.custom-field{width:100%!important;min-width:0!important;order:initial!important}
+#bosses .boss-custom .species-select-row .pk-level{min-width:0!important;width:100%!important}
+#bosses .boss-custom .level-rarity{justify-content:end!important;padding-top:0!important}
+#bosses .boss-custom .species-wrap{justify-content:space-between!important}
+#bosses .boss-custom .species-wrap .custom-sprite{width:125px!important;height:110px!important;max-height:110px!important;object-fit:contain!important;image-rendering:pixelated!important}
+#bosses .boss-custom .custom-items .item-note{margin:2px 0!important}
+/* Desktop boss: three truly aligned columns and no dead vertical room. */
+@media(min-width:761px){
+ #bosses .boss-controls{grid-template-columns:180px 195px minmax(300px,410px)!important;grid-template-rows:repeat(3,58px)!important;align-items:stretch!important;gap:5px 9px!important;width:fit-content!important;max-width:100%!important}
+ #bosses .boss-picker{grid-column:1!important;grid-row:1/4!important;align-self:stretch!important}
+ #bosses .boss-sprite-frame{height:184px!important;min-height:184px!important;max-height:184px!important;box-sizing:border-box!important}
+ #bosses .boss-sprite-frame>img{height:105px!important;max-height:105px!important;width:160px!important;flex:0 1 auto!important;margin:0!important}
+ #bosses .boss-power-inline{grid-column:3!important;grid-row:1/4!important;height:184px!important;min-height:184px!important;box-sizing:border-box!important;align-self:stretch!important;align-content:center!important;padding:9px 12px!important}
+}
+/* Mobile boss: independent compact two-column composition. */
+@media(max-width:760px){
+ #bosses .boss-controls{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;grid-template-rows:repeat(3,auto) auto!important;gap:5px 7px!important;padding:7px!important;align-items:stretch!important}
+ #bosses .boss-picker{grid-column:1!important;grid-row:1/4!important;align-self:stretch!important;min-width:0!important}
+ #bosses .boss-sprite-frame{height:100%!important;min-height:0!important;max-height:none!important;padding:5px!important;gap:3px!important;justify-content:space-between!important;box-sizing:border-box!important}
+ #bosses .boss-sprite-frame>img{height:108px!important;max-height:108px!important;min-height:0!important;width:100%!important;margin:0 auto!important;flex:0 1 auto!important;object-fit:contain!important}
+ #bosses .boss-picker-selects{gap:4px!important}
+ #bosses .boss-picker-selects select{height:30px!important;min-height:30px!important;font-size:11px!important;padding:3px 16px 3px 5px!important}
+ #bosses .boss-controls>label:has(#affix1),#bosses .boss-controls>label:has(#affix2),#bosses .boss-controls>label:has(#affix3){grid-column:2!important;align-self:center!important;min-width:0!important}
+ #bosses .boss-controls>label:has(#affix1){grid-row:1!important}#bosses .boss-controls>label:has(#affix2){grid-row:2!important}#bosses .boss-controls>label:has(#affix3){grid-row:3!important}
+ #bosses .boss-controls>label:has(#affix1) select,#bosses .boss-controls>label:has(#affix2) select,#bosses .boss-controls>label:has(#affix3) select{height:34px!important;min-height:34px!important;padding:5px 16px 5px 7px!important;font-size:12px!important}
+ #bosses .boss-power-inline{grid-column:1/-1!important;grid-row:4!important;height:auto!important;min-height:0!important;align-content:center!important;padding:8px 10px!important}
+ #bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr)!important;grid-template-rows:auto auto!important;align-items:stretch!important;gap:6px 8px!important}
+ #bosses .boss-custom .species-wrap{grid-column:1!important;grid-row:1!important;min-height:0!important;align-self:stretch!important;padding:6px!important}
+ #bosses .boss-custom .species-wrap .custom-sprite{height:112px!important;max-height:112px!important;width:125px!important;max-width:90%!important;margin:10px auto 0!important}
+ #bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;display:flex!important;justify-content:end!important;align-self:stretch!important;gap:0!important}
+ #bosses .boss-custom .level-rarity .species-type-label{display:none!important}
+ #bosses .boss-custom .nature-stack{grid-column:1/-1!important;grid-row:2!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+ #bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr) minmax(62px,.65fr)!important;gap:4px!important}
+ #bosses .boss-custom .species-select-row select,#bosses .boss-custom .species-select-row input{font-size:11px!important;height:32px!important;min-height:32px!important;padding:4px!important}
+ #bosses .boss-custom .custom-move-row{grid-template-columns:minmax(0,1fr) minmax(92px,32%)!important;gap:5px!important}
+ #bosses .boss-custom .custom-move-row .pk-mrarity{width:100%!important;min-width:0!important}
+}
+@media(max-width:390px){#bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr) 65px!important}#bosses .boss-custom .species-wrap .custom-sprite{width:105px!important;height:98px!important}}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Tasks</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -957,13 +1007,13 @@ function inputField(label,value,min,max,cls){const wrap=node('label','custom-fie
 const PRESET_KEY='huntPlannerCustomPresetsV1';
 function getPresets(){try{const v=JSON.parse(localStorage.getItem(PRESET_KEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
 function putPresets(v){try{localStorage.setItem(PRESET_KEY,JSON.stringify(v));return true}catch(e){alert('Não foi possível salvar neste navegador. Use Exportar JSON.');return false}}
-function capturePreset(card){return {version:1,pokemon:card.querySelector('.pk-name').value,level:card.querySelector('.pk-level').value,rarity:card.querySelector('.pk-rarity').value,plus:card.querySelector('.pk-plus').value,minus:card.querySelector('.pk-minus').value,iv:[...card.querySelectorAll('.pk-iv')].map(e=>e.value),ev:[...card.querySelectorAll('.pk-ev')].map(e=>e.value),moves:[...card.querySelectorAll('.pk-move')].map(e=>e.value),moveRarities:[...card.querySelectorAll('.pk-mrarity')].map(e=>e.value),items:[...card.querySelectorAll('.pk-item')].map(e=>e.value),gem:card.querySelector('.pk-gem').value}}
+function capturePreset(card){return {version:1,pokemon:card.querySelector('.pk-name').value,level:card.querySelector('.pk-level').value,rarity:card.querySelector('.pk-rarity').value,plus:card.querySelector('.pk-plus').value,minus:card.querySelector('.pk-minus').value,iv:[...card.querySelectorAll('.pk-iv')].map(e=>e.value),ev:[...card.querySelectorAll('.pk-ev')].map(e=>e.value),moves:[...card.querySelectorAll('.pk-move')].map(e=>e.value),moveRarities:[...card.querySelectorAll('.pk-mrarity')].map(e=>e.value),items:[...card.querySelectorAll('.pk-item')].map(e=>e.value),gem:'Nenhuma'}}
 function applyPreset(i,data){if(!data||!BD.pokemon.some(p=>p.name===data.pokemon))return false;const c=byId('custom-'+i);const set=(selector,v)=>{const e=c.querySelector(selector);if(!e||v===undefined)return;if(e.tagName==='SELECT'&&![...e.options].some(o=>o.value===String(v)))return;e.value=String(v)};
  set('.pk-name',data.pokemon);set('.pk-level',data.level);set('.pk-rarity',data.rarity);set('.pk-plus',data.plus);set('.pk-minus',data.minus);
  ['iv','ev'].forEach(k=>(data[k]||[]).slice(0,6).forEach((v,j)=>set('.pk-'+k+'-'+j,v)));
  populateMoves(i);(data.moves||[]).slice(0,4).forEach((v,j)=>{const e=c.querySelectorAll('.pk-move')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});
  (data.moveRarities||[]).slice(0,4).forEach((v,j)=>{const e=c.querySelectorAll('.pk-mrarity')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});
- (data.items||[]).slice(0,5).forEach((v,j)=>{const e=c.querySelectorAll('.pk-item')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});set('.pk-gem',data.gem);
+ (data.items||[]).slice(0,5).forEach((v,j)=>{const e=c.querySelectorAll('.pk-item')[j];if(e&&[...e.options].some(o=>o.value===v))e.value=v});
  refreshCustom(0);refreshCustom(1);updateCustomRanks();return true}
 function buildPresetBar(i){const bar=node('div','preset-bar');const select=node('select','preset-list');const feedback=node('div','preset-feedback','');const name=node('input','preset-name');name.placeholder='Nome do preset (ex.: Breloom Raid)';name.maxLength=65;
  const label=node('label','','Meus presets');label.append(select);bar.append(label,name);
@@ -989,7 +1039,7 @@ function buildCustom(i){
  const header=node('div','custom-header');const badges=node('div','custom-badges');badges.append(node('span','custom-pwr','PWR: —'),node('span','custom-rank','—'));header.append(badges);card.append(node('div','custom-comparison',''));
  const fields=node('div','custom-fields');
  const speciesWrap=node('div','species-wrap');speciesWrap.append(selectField('Pokémon',BD.pokemon.map(x=>x.name),'pk-name',i===0?'Charizard':'Garchomp'));const sprite=node('img','custom-sprite');sprite.alt='Sprite Pokémon';sprite.loading='lazy';speciesWrap.append(sprite,header);fields.append(speciesWrap);
- const levelRarity=node('div','level-rarity');levelRarity.append(node('div','species-type-label','—'));levelRarity.append(inputField('Nível',100,1,120,'pk-level'),selectField('Raridade',Object.keys(rarityValues),'pk-rarity','Common'));fields.append(levelRarity);
+ const levelRarity=node('div','level-rarity');levelRarity.append(node('div','species-type-label','—'));const levelField=inputField('Nível',100,1,120,'pk-level');const speciesSelectRow=node('div','species-select-row');speciesSelectRow.append(speciesWrap.querySelector('.custom-field'),levelField);speciesWrap.append(speciesSelectRow);levelRarity.append(selectField('Raridade',Object.keys(rarityValues),'pk-rarity','Common'));fields.append(levelRarity);
  const natures=node('div','nature-stack');natures.append(selectField('Natureza +',natureStats,'pk-plus','Neutra'),selectField('Natureza −',natureStats,'pk-minus','Neutra'));fields.append(natures);
  card.append(fields);
  // Sem barra de presets: os dois slots são salvos automaticamente no navegador.
@@ -1001,9 +1051,7 @@ function buildCustom(i){
  const itemBox=node('div','custom-items');itemBox.append(node('div','item-heading','🎒 Itens equipados (até 5)'));
  for(let k=0;k<5;k++){const field=selectField('Item '+(k+1),heldItems,'pk-item','Nenhum');field.classList.add('item-hint-wrap');const tip=node('span','item-tooltip','Passe o mouse para ver o efeito do item selecionado.');tip.setAttribute('role','tooltip');field.append(tip);if(k)field.classList.add('item-hidden');itemBox.append(field)}
  itemBox.append(node('p','item-note','0 de 5 itens selecionados'));
- const gemField=selectField('💎 Gema ativa (buff temporário de 30 min)',gemOptions,'pk-gem','Nenhuma');
- itemBox.append(gemField);
- itemBox.append(node('p','item-note','Gemas são consumíveis temporários, não ocupam slot. No mesmo tipo, vale o maior bônus entre gema (+25%) e booster (+15%).'));
+
  card.append(moveBox,itemBox,node('p','boss-score pk-result','Selecione Pokémon e golpes.'));
  card.addEventListener('change',e=>{refreshItemSlots(card);if(e.target.classList.contains('pk-name')||e.target.classList.contains('pk-level'))populateMoves(i);refreshCustom(0);refreshCustom(1);updateCustomRanks();saveCustomSlot(i)});
  card.addEventListener('input',()=>{refreshCustom(0);refreshCustom(1);updateCustomRanks();saveCustomSlot(i)});
@@ -1034,9 +1082,9 @@ function refreshCustom(i){
  for(let j=0;j<6;j++){iv.push(Math.max(0,Math.min(31,Number(c.querySelector('.pk-iv-'+j).value)||0)));ev.push(Math.max(0,Math.min(252,Number(c.querySelector('.pk-ev-'+j).value)||0)))}
  const moves=[...c.querySelectorAll('.pk-move')],mr=[...c.querySelectorAll('.pk-mrarity')];
  const items=[...c.querySelectorAll('.pk-item')].map(s=>s.value).filter(x=>x!=='Nenhum');
- const validMoveScores=moves.map((s,j)=>{const m=BD.moves[String(s.value).toLowerCase()];return m?scoreMove(p,m,level,rarity,iv,ev,c.querySelector('.pk-plus').value,c.querySelector('.pk-minus').value,mr[j].value)*itemMultiplier(m,items,c.querySelector('.pk-gem').value):0}).filter(v=>v>0);
+ const validMoveScores=moves.map((s,j)=>{const m=BD.moves[String(s.value).toLowerCase()];return m?scoreMove(p,m,level,rarity,iv,ev,c.querySelector('.pk-plus').value,c.querySelector('.pk-minus').value,mr[j].value)*itemMultiplier(m,items,'Nenhuma'):0}).filter(v=>v>0);
  const score=validMoveScores.length?validMoveScores.reduce((sum,v)=>sum+v,0)/validMoveScores.length:0;
- c.querySelectorAll('.move-pwr-badge').forEach((el,j)=>{const m=BD.moves[String(moves[j].value).toLowerCase()];const val=m?scoreMove(p,m,level,rarity,iv,ev,c.querySelector('.pk-plus').value,c.querySelector('.pk-minus').value,mr[j].value)*itemMultiplier(m,items,c.querySelector('.pk-gem').value):0;el.textContent=m&&val>0?shownPwr(val)+' PWR':'';el.title=m?titleCase(m.name)+' · '+classLabel(m):'Selecione um golpe';});
+ c.querySelectorAll('.move-pwr-badge').forEach((el,j)=>{const m=BD.moves[String(moves[j].value).toLowerCase()];const val=m?scoreMove(p,m,level,rarity,iv,ev,c.querySelector('.pk-plus').value,c.querySelector('.pk-minus').value,mr[j].value)*itemMultiplier(m,items,'Nenhuma'):0;el.textContent=m&&val>0?shownPwr(val)+' PWR':'';el.title=m?titleCase(m.name)+' · '+classLabel(m):'Selecione um golpe';});
  const valid=validMoveScores.length>0;
  // Rank calculated together after both custom scores have been refreshed.
  c.dataset.pwr=valid?String(score):'';

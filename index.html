@@ -713,6 +713,38 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
  #bosses .boss-custom .level-rarity .pk-level{width:100%!important}
 }
 @media(max-width:390px){#bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:5px!important}#bosses .boss-custom .nature-stack{gap:3px!important}}
+</style><style id="hunt-v143-true-dual-and-custom">
+/* Exactly one track, two independent draggable thumbs, no native tracks. */
+#fraquezas .dual-range{height:30px!important;position:relative!important;display:block!important;touch-action:none!important;isolation:isolate!important}
+#fraquezas .dual-range::before,#fraquezas .dual-range::after{content:none!important;display:none!important}
+#fraquezas .dual-range>input[type=range]{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;clip-path:inset(50%)!important}
+#fraquezas .hunt-range-track{position:absolute;inset:9px 0 auto;height:12px;border-radius:30px;background:linear-gradient(90deg,#37c976 0 33.33%,#f3ce47 33.33% 66.66%,#e95e61 66.66% 100%);box-shadow:inset 0 0 0 1px #ffffff55;touch-action:none;cursor:pointer}
+#fraquezas .hunt-range-thumb{position:absolute;top:3px;left:0;width:24px;height:24px;padding:0;transform:translateX(-50%);border:3px solid #243449;border-radius:50%;background:#f7f9ff;box-shadow:0 1px 6px #0009;touch-action:none;cursor:grab;z-index:3}
+#fraquezas .hunt-range-thumb:focus-visible{outline:3px solid #ffe18b;outline-offset:3px}
+#bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;grid-template-rows:auto!important;align-items:center!important}
+#bosses .boss-custom .species-wrap{grid-column:1!important;grid-row:1!important;min-width:0!important;overflow:hidden!important;height:180px!important;min-height:180px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important}
+#bosses .boss-custom .species-select-row{width:100%!important;max-width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,.62fr)!important;gap:4px!important;box-sizing:border-box!important;flex-shrink:0!important}
+#bosses .boss-custom .species-select-row .custom-field{min-width:0!important;width:100%!important;max-width:100%!important}
+#bosses .boss-custom .species-select-row select,#bosses .boss-custom .species-select-row input{min-width:0!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+#bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;align-self:center!important;justify-content:center!important;display:flex!important;flex-direction:column!important;gap:7px!important;min-width:0!important}
+#bosses .boss-custom .level-rarity>.nature-stack{grid-column:auto!important;grid-row:auto!important;align-self:auto!important;display:flex!important;flex-direction:column!important;gap:7px!important;min-width:0!important;margin-top:0!important}
+/* Right-hand controls form a single vertical stack using subgrid-free positioning. */
+#bosses .boss-custom .custom-fields{position:relative!important}
+#bosses .boss-custom .level-rarity{align-self:start!important;padding-top:9px!important;justify-content:start!important}
+#bosses .boss-custom .level-rarity>.nature-stack{align-self:auto!important;padding-bottom:0!important;justify-content:start!important}
+#bosses .boss-custom .level-rarity .custom-field,#bosses .boss-custom .nature-stack .custom-field{width:100%!important;min-width:0!important}
+@media(min-width:761px){#bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important}#bosses .boss-custom .species-wrap{height:188px!important;min-height:188px!important}#bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;align-self:start!important}#bosses .boss-custom .level-rarity>.nature-stack{grid-column:auto!important;grid-row:auto!important;align-self:auto!important}}
+@media(max-width:760px){
+ #bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr)!important;grid-template-rows:190px!important;gap:6px!important}
+ #bosses .boss-custom .species-wrap{height:190px!important;min-height:190px!important;max-height:190px!important;grid-column:1!important;grid-row:1!important;overflow:hidden!important}
+ #bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+ #bosses .boss-custom .species-select-row .pk-level{display:none!important}
+ #bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;align-self:start!important;padding-top:0!important;gap:5px!important}
+ #bosses .boss-custom .level-rarity>.nature-stack{grid-column:auto!important;grid-row:auto!important;align-self:auto!important;padding-bottom:0!important;gap:5px!important;display:flex!important;flex-direction:column!important}
+ #bosses .boss-custom .nature-stack select{font-size:11px!important;padding:4px 5px!important}
+ #bosses .boss-custom .species-wrap .custom-sprite{height:115px!important;max-height:115px!important;max-width:95%!important}
+}
+#bosses .boss-custom .level-rarity>.nature-stack{position:static!important;display:flex!important;flex-direction:column!important;gap:7px!important;width:100%!important;margin:0!important;padding:0!important;align-self:stretch!important}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Tasks</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -1076,6 +1108,7 @@ function buildCustom(i){
  const syncLevelPlacement=()=>{const mobile=window.matchMedia('(max-width:760px)').matches;const target=mobile?levelRarity:speciesSelectRow;if(levelField.parentElement!==target){if(mobile)target.insertBefore(levelField,levelRarity.querySelector('.pk-rarity')?.closest('.custom-field')||null);else target.append(levelField);}};
  syncLevelPlacement();window.addEventListener('resize',syncLevelPlacement,{passive:true});
  const natures=node('div','nature-stack');natures.append(selectField('Natureza +',natureStats,'pk-plus','Neutra'),selectField('Natureza −',natureStats,'pk-minus','Neutra'));fields.append(natures);
+ levelRarity.append(natures);natures.style.removeProperty('grid-column');
  card.append(fields);
  // Sem barra de presets: os dois slots são salvos automaticamente no navegador.
  const stats=node('div','custom-stats');
@@ -1254,4 +1287,11 @@ document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=
 new MutationObserver(records=>{if(records.some(r=>r.type==='childList'&&[...r.addedNodes].some(n=>n.nodeType===1&&(n.matches?.('option,select,.boss-type-badge')||n.querySelector?.('option,.boss-type-badge')))))queue()}).observe(document.body,{childList:true,subtree:true});
 window.currentLang='pt';queue();
 })();
-</script><script id="hunt-pwa-register">if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('PWA:',err)));}</script></body></html>
+</script><script id="hunt-pwa-register">if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('PWA:',err)));}</script><script id="hunt-v143-dual-slider">
+(()=>{function setup(){const wrap=document.querySelector('#fraquezas .dual-range'),low=document.getElementById('minAreaLevel'),high=document.getElementById('maxAreaLevel');if(!wrap||!low||!high||wrap.querySelector('.hunt-range-track'))return;
+const track=document.createElement('div');track.className='hunt-range-track';const thumbs=[low,high].map((input,i)=>{const b=document.createElement('button');b.type='button';b.className='hunt-range-thumb';b.setAttribute('aria-label',i?'Nível máximo':'Nível mínimo');b.setAttribute('role','slider');b.setAttribute('aria-valuemin','1');b.setAttribute('aria-valuemax','120');wrap.append(b);return b});wrap.prepend(track);
+const paint=()=>{thumbs.forEach((b,i)=>{const v=Number((i?high:low).value);b.style.left=`${(v-1)/119*100}%`;b.setAttribute('aria-valuenow',String(v))})};
+const set=(i,v)=>{v=Math.max(1,Math.min(120,Math.round(v)));if(i===0)v=Math.min(v,Number(high.value));else v=Math.max(v,Number(low.value));const inp=i?high:low;inp.value=String(v);inp.dispatchEvent(new Event('input',{bubbles:true}));inp.dispatchEvent(new Event('change',{bubbles:true}));paint()};
+let active=null;const move=e=>{if(active===null)return;const r=track.getBoundingClientRect();set(active,1+(e.clientX-r.left)/r.width*119)};
+wrap.addEventListener('pointerdown',e=>{if(e.target===low||e.target===high)return;const r=track.getBoundingClientRect(),v=1+(e.clientX-r.left)/r.width*119;active=thumbs.indexOf(e.target);if(active<0)active=Math.abs(v-Number(low.value))<=Math.abs(v-Number(high.value))?0:1;wrap.setPointerCapture(e.pointerId);move(e);e.preventDefault()});wrap.addEventListener('pointermove',move);for(const ev of ['pointerup','pointercancel','lostpointercapture'])wrap.addEventListener(ev,()=>{active=null});thumbs.forEach((b,i)=>b.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End'].includes(e.key)){const old=Number((i?high:low).value);set(i,e.key==='Home'?1:e.key==='End'?120:old+(['ArrowLeft','ArrowDown'].includes(e.key)?-1:1));e.preventDefault()}}));low.addEventListener('input',paint);high.addEventListener('input',paint);paint()};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup()})();
+</script></body></html>

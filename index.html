@@ -680,6 +680,39 @@ body .shell main > section.panel.active, body .shell section.panel.active {displ
  #bosses .boss-custom .custom-move-row .pk-mrarity{width:100%!important;min-width:0!important}
 }
 @media(max-width:390px){#bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr) 65px!important}#bosses .boss-custom .species-wrap .custom-sprite{width:105px!important;height:98px!important}}
+</style><style id="hunt-v142-layout-correction">
+/* One actual visible track: both input controls have fully transparent native tracks. */
+#fraquezas .dual-range{height:26px!important;position:relative!important;overflow:visible!important;background:none!important;border:0!important}
+#fraquezas .dual-range:before{top:8px!important;height:10px!important;z-index:0!important}
+#fraquezas .dual-range:after{display:none!important;content:none!important}
+#fraquezas .dual-range input[type="range"]{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:26px!important;background:none!important;background-color:transparent!important;background-image:none!important;box-shadow:none!important;border:none!important;opacity:1!important;pointer-events:none!important;-webkit-appearance:none!important;appearance:none!important;outline:none!important}
+#fraquezas .dual-range input[type="range"]::-webkit-slider-runnable-track{background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important;height:10px!important;-webkit-appearance:none!important}
+#fraquezas .dual-range input[type="range"]::-moz-range-track{background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important;height:10px!important}
+#fraquezas .dual-range input[type="range"]::-webkit-slider-thumb{pointer-events:auto!important;position:relative!important;z-index:2!important}
+#fraquezas .dual-range input[type="range"]::-moz-range-thumb{pointer-events:auto!important}
+/* Desktop: portrait on the left; rarity above two natures on the right. */
+#bosses .boss-custom .custom-fields{display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important;grid-template-rows:auto auto!important;gap:5px 10px!important;align-items:start!important}
+#bosses .boss-custom .species-wrap{grid-column:1!important;grid-row:1/3!important;height:170px!important;min-height:170px!important;overflow:visible!important;position:relative!important;padding:5px!important;box-sizing:border-box!important}
+#bosses .boss-custom .species-select-row{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(70px,.7fr)!important;gap:5px!important;align-items:end!important;position:relative!important;z-index:10!important;width:100%!important;min-height:0!important}
+#bosses .boss-custom .species-select-row .custom-field{min-width:0!important;max-width:100%!important}
+#bosses .boss-custom .species-select-row select,#bosses .boss-custom .species-select-row input{width:100%!important;max-width:100%!important;min-width:0!important;box-sizing:border-box!important;height:32px!important;min-height:32px!important}
+#bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;padding:0!important;justify-content:start!important;align-self:end!important;gap:3px!important;min-width:0!important}
+#bosses .boss-custom .nature-stack{grid-column:2!important;grid-row:2!important;padding:0!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;align-self:start!important;min-width:0!important}
+#bosses .boss-custom .nature-stack .custom-field{min-width:0!important;width:100%!important}
+#bosses .boss-custom .nature-stack select{width:100%!important;min-width:0!important;max-width:100%!important}
+#bosses .boss-custom .species-wrap .custom-sprite{max-height:112px!important;height:112px!important;width:128px!important;max-width:75%!important;margin:5px auto 0!important;object-fit:contain!important}
+@media(max-width:760px){
+ #bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)!important;grid-template-rows:auto auto!important;gap:6px 8px!important}
+ #bosses .boss-custom .species-wrap{grid-column:1!important;grid-row:1/3!important;height:180px!important;min-height:180px!important;max-height:none!important;overflow:visible!important}
+ #bosses .boss-custom .species-select-row{grid-template-columns:minmax(0,1fr)!important;width:100%!important;position:relative!important}
+ #bosses .boss-custom .level-rarity{grid-column:2!important;grid-row:1!important;align-self:end!important;justify-content:end!important;gap:5px!important}
+ #bosses .boss-custom .nature-stack{grid-column:2!important;grid-row:2!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important;align-self:start!important}
+ #bosses .boss-custom .nature-stack .custom-field{min-width:0!important}
+ #bosses .boss-custom .nature-stack select{font-size:10px!important;padding:4px 2px!important}
+ #bosses .boss-custom .species-wrap .custom-sprite{height:125px!important;max-height:125px!important;width:135px!important;max-width:90%!important;margin:7px auto 0!important}
+ #bosses .boss-custom .level-rarity .pk-level{width:100%!important}
+}
+@media(max-width:390px){#bosses .boss-custom .custom-fields{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:5px!important}#bosses .boss-custom .nature-stack{gap:3px!important}}
 </style></head>
 <body><div class="shell"><header class="top"><div class="brand"><span class="emblem">✦</span><div><strong>HUNT<span> PLANNER</span></strong></div></div><span class="status">● Dados do jogo carregados localmente</span><div class="language-picker" aria-label="Language / Idioma"><button type="button" class="lang-btn active" data-lang="pt" title="Português">PT-BR</button><button type="button" class="lang-btn" data-lang="en" title="English">EN-US</button><button type="button" class="lang-btn" data-lang="es" title="Español">ES</button></div><button type="button" id="bgToggle" class="bg-toggle" aria-pressed="false" title="Alternar cenário">🌙 Fundo: OFF</button></header>
 <nav class="tabs" aria-label="Planners"><button class="active" data-tab="fraquezas">⚔ Tasks</button><button data-tab="captura">◉ Captura</button><button data-tab="bosses">♜ Bosses</button></nav>
@@ -1040,6 +1073,8 @@ function buildCustom(i){
  const fields=node('div','custom-fields');
  const speciesWrap=node('div','species-wrap');speciesWrap.append(selectField('Pokémon',BD.pokemon.map(x=>x.name),'pk-name',i===0?'Charizard':'Garchomp'));const sprite=node('img','custom-sprite');sprite.alt='Sprite Pokémon';sprite.loading='lazy';speciesWrap.append(sprite,header);fields.append(speciesWrap);
  const levelRarity=node('div','level-rarity');levelRarity.append(node('div','species-type-label','—'));const levelField=inputField('Nível',100,1,120,'pk-level');const speciesSelectRow=node('div','species-select-row');speciesSelectRow.append(speciesWrap.querySelector('.custom-field'),levelField);speciesWrap.append(speciesSelectRow);levelRarity.append(selectField('Raridade',Object.keys(rarityValues),'pk-rarity','Common'));fields.append(levelRarity);
+ const syncLevelPlacement=()=>{const mobile=window.matchMedia('(max-width:760px)').matches;const target=mobile?levelRarity:speciesSelectRow;if(levelField.parentElement!==target){if(mobile)target.insertBefore(levelField,levelRarity.querySelector('.pk-rarity')?.closest('.custom-field')||null);else target.append(levelField);}};
+ syncLevelPlacement();window.addEventListener('resize',syncLevelPlacement,{passive:true});
  const natures=node('div','nature-stack');natures.append(selectField('Natureza +',natureStats,'pk-plus','Neutra'),selectField('Natureza −',natureStats,'pk-minus','Neutra'));fields.append(natures);
  card.append(fields);
  // Sem barra de presets: os dois slots são salvos automaticamente no navegador.
